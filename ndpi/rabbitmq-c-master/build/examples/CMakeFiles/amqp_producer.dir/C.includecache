@@ -1,0 +1,46 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../librabbitmq/amqp.h
+sys/types.h
+-
+stddef.h
+-
+stdint.h
+-
+amqp_framing.h
+-
+
+../librabbitmq/amqp_framing.h
+amqp.h
+-
+
+../librabbitmq/amqp_tcp_socket.h
+amqp.h
+-
+
+/home/gkrishnan/ndpi/rabbitmq-c-master/examples/amqp_producer.c
+stdlib.h
+-
+stdio.h
+-
+string.h
+-
+stdint.h
+-
+amqp_tcp_socket.h
+-
+amqp.h
+-
+amqp_framing.h
+-
+utils.h
+/home/gkrishnan/ndpi/rabbitmq-c-master/examples/utils.h
+
+/home/gkrishnan/ndpi/rabbitmq-c-master/examples/utils.h
+
