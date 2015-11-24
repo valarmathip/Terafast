@@ -136,7 +136,7 @@ def flowTable():
     print "Get the flow stats at time: %s" % currTime
     status, output = commands.getstatusoutput("ovs-dpctl dump-flows")
     for line in output.splitlines():
-        print "line is", line
+        #print "line is", line
         remat = re.search(r'.*skb_priority\((.*?)\)', line)
         if remat:
             priority = remat.group(1)
@@ -254,10 +254,10 @@ def flowTable():
         local_ip_list = list(my_subnet)
         #print "len of total hosts", len(local_ip_list)
         #print "first IP is", local_ip_list[0]
-        print "src ip address is", src_ip_addr
-        print "dst ip address is", dst_ip_addr
-        print "src ip address is", src_port
-        print "dst ip address is", dst_port
+        #print "src ip address is", src_ip_addr
+        #print "dst ip address is", dst_ip_addr
+        #print "src ip address is", src_port
+        #print "dst ip address is", dst_port
         if (src_ip_addr != ' ')  and (dst_ip_addr != ''):
             src_ip = IPAddress(src_ip_addr)
             dst_ip = IPAddress(dst_ip_addr)
