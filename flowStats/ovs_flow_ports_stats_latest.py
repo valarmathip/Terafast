@@ -3,11 +3,13 @@ import commands, re
 import datetime
 import pycurl
 import json
-from StringIO import StringIO
 import pika
 import logging
 import configparser
 import threading
+import pika
+from StringIO import StringIO
+from netaddr import *
 
 #config = configparser.ConfigParser()
 logging.basicConfig()
@@ -27,10 +29,10 @@ switchList = []
 def ProcessDpiMsgFromRMQ(ch, method, properties, body):
     global prev_flow_stats_table
     print " [x] Received %r" % (body,)
-    print "properties", properties.headers
+    #print "properties", properties.headers
     key = properties.headers.keys()[0]
     appIdFromDpi = properties.headers[key]
-    print "app id is", appIdFromDpi
+    #print "app id is", appIdFromDpi
     prev_flow_stats_value = prev_flow_stats_table.get(key, None)
     if prev_flow_stats_value is not None:
 	prev_flow_stats_table[key][19] = appIdFromDpi	
@@ -134,6 +136,7 @@ def flowTable():
     print "Get the flow stats at time: %s" % currTime
     status, output = commands.getstatusoutput("ovs-dpctl dump-flows")
     for line in output.splitlines():
+        print "line is", line
         remat = re.search(r'.*skb_priority\((.*?)\)', line)
         if remat:
             priority = remat.group(1)
@@ -241,13 +244,37 @@ def flowTable():
 	remat = re.search(r'.*in_port\((.*?)\)\,', line)
         if remat:	
 	    in_port = remat.group(1)
+        
 
         appId = getAppId(proto_no, src_port, dst_port, line)
         bandwidth = 0
         packets_diff = 0
 
+        my_subnet = IPNetwork('10.6.0.0/16')
+        local_ip_list = list(my_subnet)
+        #print "len of total hosts", len(local_ip_list)
+        #print "first IP is", local_ip_list[0]
+        print "src ip address is", src_ip_addr
+        print "dst ip address is", dst_ip_addr
+        print "src ip address is", src_port
+        print "dst ip address is", dst_port
+        if (src_ip_addr != ' ')  and (dst_ip_addr != ''):
+            src_ip = IPAddress(src_ip_addr)
+            dst_ip = IPAddress(dst_ip_addr)
+
+            if (src_ip in local_ip_list) and (src_port > 5000):
+                flow_direction = 'Forward'
+            elif (dst_ip in local_ip_list) and (dst_port > 5000):
+                flow_direction = 'Reverse'
+            else:
+                flow_direction = 'None'
+            print "current flow direction is", flow_direction
+        else:
+            flow_direction = 'None'
+            print "flow direction in else part", flow_direction
+
 	tableKey = "%s:%s:%s:%s" % (src_ip_addr, dst_ip_addr, src_port, dst_port)
-	tableValue = [priority, in_port, src_mac_addr, dst_mac_addr, eth_type, src_ip_addr, dst_ip_addr, proto_no, type_of_service, time_to_live, frag_offset, src_port, dst_port, packets, used_bytes, used_time, flags, actions, currTime, appId, packets_diff, bandwidth]
+	tableValue = [priority, in_port, src_mac_addr, dst_mac_addr, eth_type, src_ip_addr, dst_ip_addr, proto_no, type_of_service, time_to_live, frag_offset, src_port, dst_port, packets, used_bytes, used_time, flags, actions, appId, packets_diff, bandwidth, flow_direction, currTime]
 	curr_flow_stats_table[tableKey] =  tableValue
 
     print "current flow stat table is", curr_flow_stats_table	
@@ -273,10 +300,10 @@ def compareDicts(prev_table, curr_table):
             diff_bytes = int(curr_table[key][14]) - int(prev_table[key][14])
             packets_diff = int(curr_table[key][13]) - int(prev_table[key][13])
             bandwidth = (diff_bytes * 8) / 10
-            appId = prev_table[key][19]
-	    curr_table[key][19] = appId
-	    curr_table[key][20] = packets_diff
-	    curr_table[key][21] = bandwidth
+            appId = prev_table[key][18]
+	    curr_table[key][18] = appId
+	    curr_table[key][19] = packets_diff
+	    curr_table[key][20] = bandwidth
 
     return curr_table
 
@@ -323,7 +350,7 @@ def getPortStats(switch_id):
 
     buffer = StringIO()
 
-    port_url= 'http://10.6.0.190:8080/stats/port/%s' % switch_id
+    port_url= 'http://%s:%s/stats/port/%s' % (sdnIp, sdnPort, switch_id)
     c = pycurl.Curl()
     c.setopt(c.URL, port_url)
     c.setopt(c.WRITEFUNCTION, buffer.write)
@@ -332,12 +359,12 @@ def getPortStats(switch_id):
     c.perform()
     c.close()
     body = buffer.getvalue()
-    print "body is", body
+    #print "body is", body
     #print "type of stats out is", type(body), body
     portStat_dict = json.loads(body)
     #print "switch id", switch_id
     port_stats_list = portStat_dict['%s' % switch_id]
-    print "port table list is", port_stats_list
+    #print "port table list is", port_stats_list
     for dict_port in port_stats_list:
 	port_table_key = dict_port['port_no']
         port_table_value = [switch_id, dict_port['tx_dropped'], dict_port['rx_packets'], dict_port['rx_crc_err'], dict_port['tx_bytes'], dict_port['rx_dropped'], dict_port['port_no'], dict_port['rx_over_err'], dict_port['rx_frame_err'], dict_port['rx_bytes'], dict_port['tx_errors'], dict_port['duration_nsec'], dict_port['collisions'], dict_port['duration_sec'], dict_port['rx_errors'], dict_port['tx_packets'], currTime]
@@ -361,19 +388,19 @@ def getPortStats(switch_id):
 		rx_errors_count = int(curr_ports_stats_table[key][13]) - int(prev_ports_stats_table[key][13])					
 		counts_list = [tx_bandwidth, rx_bandwidth, tx_dropped_count, rx_dropped_count, tx_packets_count, rx_packets_count, tx_errors_count, rx_errors_count]
 	  	curr_ports_stats_table[key] = curr_ports_stats_table[key] + counts_list
-	print "curr table at the second time", curr_ports_stats_table
+	#print "curr table at the second time", curr_ports_stats_table
         createPortStatsCsv(curr_ports_stats_table)
         prev_ports_stats_table = curr_ports_stats_table
 	curr_ports_stats_table = {}
     else:
-	print "inside if as this is first time"
+	#print "inside if as this is first time"
         firstTimePort = False 
         # Counts_list elemets are tx_bandwidth, rx_bandwidth, tx_dropped_count, rx_dropped_count, tx_packets_count,
 	# rx_packets_count, tx_errors_count, rx_errors_count
 	counts_list = [0, 0, 0, 0, 0, 0, 0, 0]
 	for key,value in curr_ports_stats_table.iteritems():
 	   curr_ports_stats_table[key] = value + counts_list
-        print "cuur ports at first time", curr_ports_stats_table
+        #print "cuur ports at first time", curr_ports_stats_table
         createPortStatsCsv(curr_ports_stats_table)
         prev_ports_stats_table = curr_ports_stats_table
 	curr_ports_stats_table = {}
@@ -382,7 +409,7 @@ def getPortDescr(switch_id):
 
     global curr_ports_descr_table    
     buffer = StringIO()
-    port_url= 'http://10.6.0.190:8080/stats/portdesc/%s' % switch_id
+    port_url= 'http://%s:%s/stats/portdesc/%s' % (sdnIp, sdnPort, switch_id)
     c = pycurl.Curl()
     c.setopt(c.URL, port_url)
     c.setopt(c.WRITEFUNCTION, buffer.write)
@@ -399,7 +426,7 @@ def getPortDescr(switch_id):
 	table_key = dict_port['port_no']
 	table_value = [switch_id, dict_port['hw_addr'], dict_port['curr'], dict_port['supported'], dict_port['max_speed'], dict_port['advertised'], dict_port['peer'], dict_port['port_no'], dict_port['curr_speed'], dict_port['name'], dict_port['state'], dict_port['config'], currTime]
     	curr_ports_descr_table[table_key] = table_value
-    print "curr ports descr table is ",  curr_ports_descr_table
+    #print "curr ports descr table is ",  curr_ports_descr_table
     #print len(value)
     createPortDescrCsv(curr_ports_descr_table)
 
@@ -443,7 +470,7 @@ def createPortDescrCsv(ports_descr_table):
 
 def loadFile(fileName):
     
-   mysql_server = config['GENERIC']['sdn_controller_ip'] 
+   mysql_server = config['GENERIC']['db_server_name'] 
    dbName = config['GENERIC']['database_name'] 
    mysql_path = "/home/mravi/mysql-5.5.32/target/usr/local/mysql/bin"
 
@@ -474,7 +501,7 @@ if __name__ == '__main__':
     appTable("app_ids.txt")
 
     # arguments/config file- sdn ip, ovs-ip, pollinterval
-    print "before reading conf file"
+    #print "before reading conf file"
     # do all the initializations
     # Get Switch ID
     config = configparser.ConfigParser()
@@ -483,11 +510,12 @@ if __name__ == '__main__':
     sdnPort = config['GENERIC']['sdn_controller_port']
     rabbitMQ_server = config['GENERIC']['rabbimq_server']
     rabbitMQ_port = config['GENERIC']['rabbimq_server_port']
-    print "sdn ip is", sdnIp
+    #print "sdn ip is", sdnIp
     
 
     # Block the RabbitMQ connection to receive
-    credentials = pika.PlainCredentials('testuser', 'testuser')
+    #credentials = pika.PlainCredentials('testuser', 'testuser')
+    credentials = pika.PlainCredentials('test', 'test')
     #connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
     connection = pika.BlockingConnection(pika.ConnectionParameters(rabbitMQ_server, int(rabbitMQ_port), '/', credentials))
     channel = connection.channel()
