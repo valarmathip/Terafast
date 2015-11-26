@@ -19,7 +19,7 @@ curr_flow_stats_table = {}
 prev_ports_stats_table = {}
 curr_ports_stats_table = {}
 curr_ports_descr_table = {}
-src_ip_table = {}
+subscr_ip_table = {}
 topDstIPTable = {}
 new_dict = {}
 firstTime = True
@@ -29,6 +29,8 @@ first_time_topDstIP = True
 appIdTable = {}
 proto_table = {}
 switchList = []
+block_list_ip = []
+threshold_data = 1000000
 
 def ProcessDpiMsgFromRMQ(ch, method, properties, body):
     global prev_flow_stats_table
@@ -228,6 +230,7 @@ def flowTable():
             used_bytes = remat.group(1)
 	else:
 	    used_bytes = ' '
+        #print "used bytes are", used_bytes
         remat = re.search(r'.*used:(.*?)\,', line)
 	if remat:
             used_time = remat.group(1)
@@ -281,7 +284,7 @@ def flowTable():
             #print "flow direction in else part", flow_direction
 
 	tableKey = "%s:%s:%s:%s" % (src_ip_addr, dst_ip_addr, src_port, dst_port)
-	tableValue = [priority, in_port, src_mac_addr, dst_mac_addr, eth_type, src_ip_addr, dst_ip_addr, proto_no, type_of_service, time_to_live, frag_offset, src_port, dst_port, packets, used_bytes, used_time, flags, actions, appId, packets_diff, abs(bandwidth), flow_direction, currTime]
+	tableValue = [priority, in_port, src_mac_addr, dst_mac_addr, eth_type, src_ip_addr, dst_ip_addr, proto_no, type_of_service, time_to_live, frag_offset, src_port, dst_port, packets, used_bytes, used_time, flags, actions, appId, packets_diff, bandwidth, flow_direction, currTime]
 	curr_flow_stats_table[tableKey] =  tableValue
 
     #print "current flow stat table is", curr_flow_stats_table	
@@ -290,9 +293,9 @@ def flowTable():
 	#print "not first time"
         new_flow_stats_table = compareDicts(prev_flow_stats_table, curr_flow_stats_table) 
         processTopTalkers(new_flow_stats_table)
-        print "top5src", topSrcIPTable
-        print "top4dst", topDstIPTable
-        print "topApp", topAppTable
+        #print "top su", top
+        #print "top4dst", topDstIPTable
+        #print "topApp", topAppTable
 
         createFlowStatsCsv(new_flow_stats_table, fileName)
 	prev_flow_stats_table = curr_flow_stats_table
@@ -311,7 +314,7 @@ def processTopTalkers(flow_table):
     print "flowTable in process table function"
 
     for key,value in flow_table.iteritems():
-        print "current value is", value
+        #print "current value is", value
         subscrIPTable(value)
         #top5DstIPTable(value)
         #top5AppTable(value)
@@ -320,33 +323,57 @@ def processTopTalkers(flow_table):
 
 def subscrIPTable(value):
 
-    global src_ip_table   
+    global subscr_ip_table   
     global first_time_topSrcIP
 
     if value[21] == 'Forward':
+        print "bandwidth is subsrc ip table is", value[20]
         diff_bytes = (value[20] * 10) / 8
-        if value[5] in src_ip_table.keys():
-            src_ip_table[value[5]][1] = src_ip_table[value[5]][1] + diff_bytes
+        print "diiff bytes in subsrc ip table is", diff_bytes
+        if value[5] in subscr_ip_table.keys():
+            subscr_ip_table[value[5]][1] = subscr_ip_table[value[5]][1] + diff_bytes
             last_update_time = time.time()
-            src_ip_table[value[5]][2] = last_update_time
+            subscr_ip_table[value[5]][2] = last_update_time
         else:
             start_time =  time.time()
             last_update_time = time.time()
-            topSrcIPTable[value[5]] = [start_time, diff_bytes, last_update_time]
+            subscr_ip_table[value[5]] = [start_time, diff_bytes, last_update_time]
 
 def getTop5SubsrcIP():
-    global src_ip_table
-     
-    print "current src_ip_table is", src_ip_table
+    global subscr_ip_table
+    global threshold_data
+    global block_list_ip
+
+    print "current subscriber_ip_table is", subscr_ip_table
     curr_time = time.time()
-    for key, value in src_ip_table.iteritems():
+    for key, value in subscr_ip_table.iteritems():
         print value[0]
         print value[1]
         print value[2]
+        entry_time = value[0]
+        last_updated_time = value[2]
+        if (curr_time - last_updated_time) < 300:
+            print "found subscriber in the last 5mins", key
+            print "data consumed %s is: %s" % (key, value[1])
+            if value[1] != 0:
+                consumed_data = value[1] / (last_updated_time - entry_time)
+                print "total consumed data is", consumed_data
+                if consumed_data > threshold_data:
+                    block_list_ip.append(key)
+            else:
+                print "consumbed data is", value[1]
 
+    print "ip's available in the block list is:", block_list_ip
+    dropFlows(block_list_ip)
 
     threading.Timer(300, getTop5SubsrcIP).start()
 
+def dropFlows(block_list_ip)
+    """ Drop the flows for all the subscriber those are available in the block_list"""
+
+    if block_list_ip:
+        for ip in block_list_ip:
+            print "drop the flows for IP", ip
 
 def top5DstIPTable(value):
     """Process each flow and for a table based on the destination IPs(reverse flow)"""
@@ -387,19 +414,23 @@ def top5AppTable(value):
         else:
             start_time =  datetime.datetime.now()
             last_update_time = datetime.datetime.now()
-            topAppTable[value[18] = [value[20], start_time, last_update_time]
+            topAppTable[value[18]] = [value[20], start_time, last_update_time]
 
 def compareDicts(prev_table, curr_table):
 
     for key in curr_table.keys():
 	if key in prev_table.keys():
             diff_bytes = int(curr_table[key][14]) - int(prev_table[key][14])
+            #print "bytes diff are", diff_bytes
             packets_diff = int(curr_table[key][13]) - int(prev_table[key][13])
-            bandwidth = (diff_bytes * 8) / 10
+            bandwidth = (abs(diff_bytes) * 8) / 10
+            #print "bandwidth is",bandwidth
+            #print "absolute value for bandwidth is", abs(bandwidth)
             appId = prev_table[key][18]
 	    curr_table[key][18] = appId
 	    curr_table[key][19] = packets_diff
 	    curr_table[key][20] = bandwidth
+            #print "type of bandwidth is", type(curr_table[key][20])
 
     return curr_table
 
