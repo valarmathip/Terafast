@@ -24,7 +24,6 @@ topDstIPTable = {}
 new_dict = {}
 firstTime = True
 firstTimePort = True
-first_time_topSrcIP = True
 first_time_topDstIP = True
 appIdTable = {}
 proto_table = {}
@@ -251,6 +250,8 @@ def flowTable():
 	remat = re.search(r'.*in_port\((.*?)\)\,', line)
         if remat:	
 	    in_port = remat.group(1)
+        else:
+            in_port = ' '
         
 
         appId = getAppId(proto_no, src_port, dst_port, line)
@@ -277,7 +278,7 @@ def flowTable():
                 #print "dst_port", dst_port
                 #print "src_port", src_port
             else:
-                flow_direction = 'None'
+                flow_direction = 'Reverse'
             #print "current flow direction is", flow_direction
         else:
             flow_direction = 'None'
@@ -293,18 +294,17 @@ def flowTable():
 	#print "not first time"
         new_flow_stats_table = compareDicts(prev_flow_stats_table, curr_flow_stats_table) 
         processTopTalkers(new_flow_stats_table)
-        #print "top su", top
-        #print "top4dst", topDstIPTable
-        #print "topApp", topAppTable
-
-        createFlowStatsCsv(new_flow_stats_table, fileName)
+         
+        #createFlowStatsCsv(new_flow_stats_table, fileName)
+        createCsvAndWriteDb(new_flow_stats_table, fileName)
 	prev_flow_stats_table = curr_flow_stats_table
 	curr_flow_stats_table = {}
     
     else:
 	#print "this is first time"
         firstTime = False
-        createFlowStatsCsv(curr_flow_stats_table, fileName)
+        #createFlowStatsCsv(curr_flow_stats_table, fileName)
+        createCsvAndWriteDb(curr_flow_stats_table, fileName)
 	prev_flow_stats_table = curr_flow_stats_table
         curr_flow_stats_table = {}
 
@@ -312,32 +312,54 @@ def processTopTalkers(flow_table):
     """ To process the top5 sourceIP, destination IP and applications from the current flow table"""
 
     print "flowTable in process table function"
+    global subscr_ip_table
 
     for key,value in flow_table.iteritems():
         #print "current value is", value
         subscrIPTable(value)
+        #subscrIPTable1(value)
         #top5DstIPTable(value)
         #top5AppTable(value)
         #top5ConnTable(value)
 
+    #for key,value in flow_table.iteritems():
+    #    subscrIPTable1(value)
+
+    print "subscriber ip table is", subscr_ip_table
+    writeSubscrIPTableIntoDB(subscr_ip_table, 'subscriberIpTable.csv')
 
 def subscrIPTable(value):
 
     global subscr_ip_table   
-    global first_time_topSrcIP
 
     if value[21] == 'Forward':
+        print "value in forward flow", value
         print "bandwidth is subsrc ip table is", value[20]
-        diff_bytes = (value[20] * 10) / 8
-        print "diiff bytes in subsrc ip table is", diff_bytes
+        up_stream_bytes = (value[20] * 10) / 8
+        #down_stream_bytes = 0
+        print "diiff bytes in subsrc ip table is", up_stream_bytes
         if value[5] in subscr_ip_table.keys():
-            subscr_ip_table[value[5]][1] = subscr_ip_table[value[5]][1] + diff_bytes
+            subscr_ip_table[value[5]][1] = subscr_ip_table[value[5]][1] + up_stream_bytes
             last_update_time = time.time()
-            subscr_ip_table[value[5]][2] = last_update_time
+            subscr_ip_table[value[5]][3] = last_update_time
         else:
+            down_stream_bytes = 0
+            start_time =  time.time()
+            last_update_time = start_time
+            subscr_ip_table[value[5]] = [start_time, up_stream_bytes, down_stream_bytes, last_update_time]
+    elif value[21] == 'Reverse':
+        print "value in reverse flow", value
+        down_stream_bytes = (value[20] * 10) / 8
+        if value[6] in subscr_ip_table.keys():
+            subscr_ip_table[value[6]][2] = subscr_ip_table[value[6]][2] + down_stream_bytes
+            last_update_time = time.time()
+            subscr_ip_table[value[6]][3] = last_update_time
+        else:
+            up_stream_bytes = 0
             start_time =  time.time()
             last_update_time = time.time()
-            subscr_ip_table[value[5]] = [start_time, diff_bytes, last_update_time]
+            subscr_ip_table[value[6]] = [start_time, up_stream_bytes, down_stream_bytes, last_update_time]
+
 
 def getTop5SubsrcIP():
     global subscr_ip_table
@@ -347,33 +369,42 @@ def getTop5SubsrcIP():
     print "current subscriber_ip_table is", subscr_ip_table
     curr_time = time.time()
     for key, value in subscr_ip_table.iteritems():
-        print value[0]
-        print value[1]
-        print value[2]
+        #print value[0]
+        #print value[1]
+        #print value[2]
         entry_time = value[0]
-        last_updated_time = value[2]
-        if (curr_time - last_updated_time) < 300:
+        last_updated_time = value[3]
+        if (curr_time - last_updated_time) < 120:
             print "found subscriber in the last 5mins", key
-            print "data consumed %s is: %s" % (key, value[1])
-            if value[1] != 0:
-                consumed_data = value[1] / (last_updated_time - entry_time)
-                print "total consumed data is", consumed_data
-                if consumed_data > threshold_data:
+            #print "data consumed %s is: %s" % (key, value[1])
+            print "value for %s is: %s" % (key, value)
+            if int(last_updated_time - entry_time) != 0:
+                
+                upStream_data = int(value[1]) / (last_updated_time - entry_time)
+                downStream_data = int(value[2]) / (last_updated_time - entry_time)
+                #print "total consumed upstream data is", upStream_data
+                #print "total consumed upstream data is", upStream_data
+                if upStream_data > threshold_data:
+                    print "total consumed upstream data is", upStream_data
                     block_list_ip.append(key)
-            else:
-                print "consumbed data is", value[1]
+                elif downStream_data > threshold_data:
+                    print "total consumed down stream data is", downStream_data
+                    block_list_ip.append(key) 
+
 
     print "ip's available in the block list is:", block_list_ip
-    dropFlows(block_list_ip)
+    dropFlows()
 
-    threading.Timer(300, getTop5SubsrcIP).start()
+    threading.Timer(120, getTop5SubsrcIP).start()
 
-def dropFlows(block_list_ip)
+def dropFlows():
     """ Drop the flows for all the subscriber those are available in the block_list"""
-
+    global block_list_ip
     if block_list_ip:
         for ip in block_list_ip:
             print "drop the flows for IP", ip
+        block_list_ip = []
+        print "block list after droping all", block_list_ip
 
 def top5DstIPTable(value):
     """Process each flow and for a table based on the destination IPs(reverse flow)"""
@@ -423,6 +454,8 @@ def compareDicts(prev_table, curr_table):
             diff_bytes = int(curr_table[key][14]) - int(prev_table[key][14])
             #print "bytes diff are", diff_bytes
             packets_diff = int(curr_table[key][13]) - int(prev_table[key][13])
+            if (packets_diff < 0):
+                print "curr Table bytes : %s, prev_table_bytes: %s" %(curr_table[key][14], prev_table[key][14])
             bandwidth = (abs(diff_bytes) * 8) / 10
             #print "bandwidth is",bandwidth
             #print "absolute value for bandwidth is", abs(bandwidth)
@@ -434,13 +467,22 @@ def compareDicts(prev_table, curr_table):
 
     return curr_table
 
-def createFlowStatsCsv(flowTable, fileName):
+def writeSubscrIPTableIntoDB(tableName, fileName):
+
+    fd = open(fileName, "w+")
+    for key, value in tableName.iteritems():
+        line = "%s,%s,%s,%s,%s\n" %(key,value[0],value[1],value[2],value[3])
+        fd.write(line)
+    fd.close()
+    loadFile("fileName")
+
+def createCsvAndWriteDb(tableName, fileName):
  
     #table_column_header = "skb_priority, in_port, src_mac, dst_mac, eth_type, src_ip, dst_ip, proto, tos, ttl, frag, src_port, dst_port, packets, bytes, used_time, flags, actions, time\n"
 
-    fd = open("%s" % fileName, "a")
+    fd = open("%s" % fileName, "w+")
     #fd.write(table_column_header)    
-    for key, value in flowTable.iteritems():
+    for key, value in tableName.iteritems():
 	#fd.write(value)
 	listLen = len(value)
         strList = ""
@@ -560,7 +602,7 @@ def getPortDescr(switch_id):
 def createPortStatsCsv(ports_stats_table):
 
     fileName = "portStats.csv"
-    fd = open(fileName, "a")
+    fd = open(fileName, "w+")
     for key, value in ports_stats_table.iteritems():
 	listLen = len(value)
 	strList = ""
@@ -579,7 +621,7 @@ def createPortStatsCsv(ports_stats_table):
 def createPortDescrCsv(ports_descr_table):
 
     fileName = "portDescr.csv"
-    fd = open("%s" % fileName, "a")
+    fd = open("%s" % fileName, "w+")
     for key, value in ports_descr_table.iteritems():
 	listLen = len(value)
         strList = ""
@@ -600,13 +642,10 @@ def loadFile(fileName):
    dbName = config['GENERIC']['database_name'] 
    mysql_path = "/home/mravi/mysql-5.5.32/target/usr/local/mysql/bin"
 
-   query = "%s/mysqlimport --socket=/tmp/mysql.sock --user=root --compress --fields-terminated-by=',' --lines-terminated-by='\n' --local --lock-tables --verbose -h %s %s %s" % (mysql_path, mysql_server, dbName, fileName)
+   query = "%s/mysqlimport --socket=/tmp/mysql.sock --user=root --compress --fields-terminated-by=\",\" --lines-terminated-by=\"\n\" --local --lock-tables --verbose -h %s %s %s" % (mysql_path, mysql_server, dbName, fileName)
 
    status, output =  commands.getstatusoutput(query)
-   os.system('rm "%s"' % fileName)
-   #status, output =  commands.getstatusoutput('rm %s' % fileName)
-   #print output
-   #print status
+   #os.system('rm "%s"' % fileName)
     
 ####################### MAIN PROGRAM #####################
 
