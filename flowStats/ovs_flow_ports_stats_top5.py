@@ -30,6 +30,8 @@ proto_table = {}
 switchList = []
 block_list_ip = []
 threshold_data = 1000000
+local_ip_list = []
+white_list_ip = ['10.6.0.47']
 
 def ProcessDpiMsgFromRMQ(ch, method, properties, body):
     global prev_flow_stats_table
@@ -131,7 +133,7 @@ def getAppId(proto, src_port, dst_port, line):
 
 def flowTable():
     #currTime = time.strftime("%H:%M:%S", time.localtime())
-   
+    global local_ip_list
     table_column_header = "skb_priority, src_mac, dst_mac, eth_type, src_ip, dst_ip, proto, tos, ttl, frag, src_port, dst_port, packets, bytes, used_time, flags, bandwidht, appId\n"
     global curr_flow_stats_table
     global prev_flow_stats_table
@@ -288,22 +290,18 @@ def flowTable():
 	tableValue = [priority, in_port, src_mac_addr, dst_mac_addr, eth_type, src_ip_addr, dst_ip_addr, proto_no, type_of_service, time_to_live, frag_offset, src_port, dst_port, packets, used_bytes, used_time, flags, actions, appId, packets_diff, bandwidth, flow_direction, currTime]
 	curr_flow_stats_table[tableKey] =  tableValue
 
-    #print "current flow stat table is", curr_flow_stats_table	
+    print "current flow stat table is", curr_flow_stats_table	
     #print "dictionary is", flow_stats_dict
     if not firstTime:
-	#print "not first time"
         new_flow_stats_table = compareDicts(prev_flow_stats_table, curr_flow_stats_table) 
         processTopTalkers(new_flow_stats_table)
          
-        #createFlowStatsCsv(new_flow_stats_table, fileName)
         createCsvAndWriteDb(new_flow_stats_table, fileName)
 	prev_flow_stats_table = curr_flow_stats_table
 	curr_flow_stats_table = {}
     
     else:
-	#print "this is first time"
         firstTime = False
-        #createFlowStatsCsv(curr_flow_stats_table, fileName)
         createCsvAndWriteDb(curr_flow_stats_table, fileName)
 	prev_flow_stats_table = curr_flow_stats_table
         curr_flow_stats_table = {}
@@ -311,7 +309,7 @@ def flowTable():
 def processTopTalkers(flow_table):
     """ To process the top5 sourceIP, destination IP and applications from the current flow table"""
 
-    print "flowTable in process table function"
+    #print "flowTable in process table function"
     global subscr_ip_table
 
     for key,value in flow_table.iteritems():
@@ -322,8 +320,6 @@ def processTopTalkers(flow_table):
         #top5AppTable(value)
         #top5ConnTable(value)
 
-    #for key,value in flow_table.iteritems():
-    #    subscrIPTable1(value)
 
     print "subscriber ip table is", subscr_ip_table
     writeSubscrIPTableIntoDB(subscr_ip_table, 'subscriberIpTable.csv')
@@ -333,11 +329,7 @@ def subscrIPTable(value):
     global subscr_ip_table   
 
     if value[21] == 'Forward':
-        print "value in forward flow", value
-        print "bandwidth is subsrc ip table is", value[20]
         up_stream_bytes = (value[20] * 10) / 8
-        #down_stream_bytes = 0
-        print "diiff bytes in subsrc ip table is", up_stream_bytes
         if value[5] in subscr_ip_table.keys():
             subscr_ip_table[value[5]][1] = subscr_ip_table[value[5]][1] + up_stream_bytes
             last_update_time = time.time()
@@ -348,20 +340,20 @@ def subscrIPTable(value):
             last_update_time = start_time
             subscr_ip_table[value[5]] = [start_time, up_stream_bytes, down_stream_bytes, last_update_time]
     elif value[21] == 'Reverse':
-        print "value in reverse flow", value
         down_stream_bytes = (value[20] * 10) / 8
         if value[6] in subscr_ip_table.keys():
             subscr_ip_table[value[6]][2] = subscr_ip_table[value[6]][2] + down_stream_bytes
             last_update_time = time.time()
             subscr_ip_table[value[6]][3] = last_update_time
         else:
-            up_stream_bytes = 0
-            start_time =  time.time()
-            last_update_time = time.time()
-            subscr_ip_table[value[6]] = [start_time, up_stream_bytes, down_stream_bytes, last_update_time]
+            if value[6] in local_ip_list:
+                up_stream_bytes = 0
+                start_time =  time.time()
+                last_update_time = time.time()
+                subscr_ip_table[value[6]] = [start_time, up_stream_bytes, down_stream_bytes, last_update_time]
 
 
-def getTop5SubsrcIP():
+def getTop5SubscrIP():
     global subscr_ip_table
     global threshold_data
     global block_list_ip
@@ -369,21 +361,16 @@ def getTop5SubsrcIP():
     print "current subscriber_ip_table is", subscr_ip_table
     curr_time = time.time()
     for key, value in subscr_ip_table.iteritems():
-        #print value[0]
-        #print value[1]
-        #print value[2]
         entry_time = value[0]
         last_updated_time = value[3]
         if (curr_time - last_updated_time) < 120:
-            print "found subscriber in the last 5mins", key
+            #print "found subscriber in the last 5mins", key
             #print "data consumed %s is: %s" % (key, value[1])
             print "value for %s is: %s" % (key, value)
             if int(last_updated_time - entry_time) != 0:
                 
                 upStream_data = int(value[1]) / (last_updated_time - entry_time)
                 downStream_data = int(value[2]) / (last_updated_time - entry_time)
-                #print "total consumed upstream data is", upStream_data
-                #print "total consumed upstream data is", upStream_data
                 if upStream_data > threshold_data:
                     print "total consumed upstream data is", upStream_data
                     block_list_ip.append(key)
@@ -395,16 +382,17 @@ def getTop5SubsrcIP():
     print "ip's available in the block list is:", block_list_ip
     dropFlows()
 
-    threading.Timer(120, getTop5SubsrcIP).start()
+    threading.Timer(120, getTop5SubscrIP).start()
 
 def dropFlows():
     """ Drop the flows for all the subscriber those are available in the block_list"""
     global block_list_ip
     if block_list_ip:
         for ip in block_list_ip:
-            print "drop the flows for IP", ip
-        block_list_ip = []
-        print "block list after droping all", block_list_ip
+            if ip not in white_list_ip:
+                print "drop the flows for IP", ip
+        #block_list_ip = []
+        #print "block list after droping all", block_list_ip
 
 def top5DstIPTable(value):
     """Process each flow and for a table based on the destination IPs(reverse flow)"""
@@ -454,8 +442,9 @@ def compareDicts(prev_table, curr_table):
             diff_bytes = int(curr_table[key][14]) - int(prev_table[key][14])
             #print "bytes diff are", diff_bytes
             packets_diff = int(curr_table[key][13]) - int(prev_table[key][13])
-            if (packets_diff < 0):
+            if (diff_bytes < 0):
                 print "curr Table bytes : %s, prev_table_bytes: %s" %(curr_table[key][14], prev_table[key][14])
+                print "diff bytes are:%s" % diff_bytes
             bandwidth = (abs(diff_bytes) * 8) / 10
             #print "bandwidth is",bandwidth
             #print "absolute value for bandwidth is", abs(bandwidth)
@@ -463,7 +452,6 @@ def compareDicts(prev_table, curr_table):
 	    curr_table[key][18] = appId
 	    curr_table[key][19] = packets_diff
 	    curr_table[key][20] = bandwidth
-            #print "type of bandwidth is", type(curr_table[key][20])
 
     return curr_table
 
@@ -474,16 +462,14 @@ def writeSubscrIPTableIntoDB(tableName, fileName):
         line = "%s,%s,%s,%s,%s\n" %(key,value[0],value[1],value[2],value[3])
         fd.write(line)
     fd.close()
-    loadFile("fileName")
+    loadFile(fileName)
 
 def createCsvAndWriteDb(tableName, fileName):
  
     #table_column_header = "skb_priority, in_port, src_mac, dst_mac, eth_type, src_ip, dst_ip, proto, tos, ttl, frag, src_port, dst_port, packets, bytes, used_time, flags, actions, time\n"
 
     fd = open("%s" % fileName, "w+")
-    #fd.write(table_column_header)    
     for key, value in tableName.iteritems():
-	#fd.write(value)
 	listLen = len(value)
         strList = ""
 	for i in range(0, listLen):
@@ -638,14 +624,16 @@ def createPortDescrCsv(ports_descr_table):
 
 def loadFile(fileName):
     
-   mysql_server = config['GENERIC']['db_server_name'] 
-   dbName = config['GENERIC']['database_name'] 
-   mysql_path = "/home/mravi/mysql-5.5.32/target/usr/local/mysql/bin"
+    mysql_server = config['GENERIC']['db_server_name'] 
+    dbName = config['GENERIC']['database_name'] 
+    mysql_base = "/home/mravi/mysql-5.5.32/target/usr/local/mysql/bin"
+    utility = "mysqlimport"
+    params = """--socket=/tmp/mysql.sock --user=root --compress --fields-terminated-by=\",\" --lines-terminated-by=\"\\n\" --local --lock-tables --verbose -h"""
 
-   query = "%s/mysqlimport --socket=/tmp/mysql.sock --user=root --compress --fields-terminated-by=\",\" --lines-terminated-by=\"\n\" --local --lock-tables --verbose -h %s %s %s" % (mysql_path, mysql_server, dbName, fileName)
-
-   status, output =  commands.getstatusoutput(query)
-   #os.system('rm "%s"' % fileName)
+    cmd = "%s/%s %s %s %s %s" %(mysql_base, utility,params, mysql_server, dbName, fileName)
+    status, output = commands.getstatusoutput(cmd)
+    #print status, output
+    #os.system('rm "%s"' % fileName)
     
 ####################### MAIN PROGRAM #####################
 
@@ -686,11 +674,10 @@ if __name__ == '__main__':
 
     switchList= getSwitchId(sdnIp, sdnPort)
     # initializer timer for  poll interval
-    
     FetchAndProcessStats()
 
     # Process top5 subscriber ip
-    getTop5SubsrcIP()
+    getTop5SubscrIP()
 
     channel.basic_consume(ProcessDpiMsgFromRMQ, queue='dpi')
 

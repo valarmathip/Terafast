@@ -268,16 +268,16 @@ def flowTable():
                 flow_direction = 'Reverse'
             else:
                 flow_direction = 'None'
-            print "current flow direction is", flow_direction
+            #print "current flow direction is", flow_direction
         else:
             flow_direction = 'None'
-            print "flow direction in else part", flow_direction
+            #print "flow direction in else part", flow_direction
 
 	tableKey = "%s:%s:%s:%s" % (src_ip_addr, dst_ip_addr, src_port, dst_port)
 	tableValue = [priority, in_port, src_mac_addr, dst_mac_addr, eth_type, src_ip_addr, dst_ip_addr, proto_no, type_of_service, time_to_live, frag_offset, src_port, dst_port, packets, used_bytes, used_time, flags, actions, appId, packets_diff, bandwidth, flow_direction, currTime]
 	curr_flow_stats_table[tableKey] =  tableValue
 
-    print "current flow stat table is", curr_flow_stats_table	
+    #print "current flow stat table is", curr_flow_stats_table	
     #print "dictionary is", flow_stats_dict
     if not firstTime:
 	#print "not first time"
@@ -514,8 +514,8 @@ if __name__ == '__main__':
     
 
     # Block the RabbitMQ connection to receive
-    #credentials = pika.PlainCredentials('testuser', 'testuser')
-    credentials = pika.PlainCredentials('test', 'test')
+    credentials = pika.PlainCredentials('testuser', 'testuser')
+    #credentials = pika.PlainCredentials('test', 'test')
     #connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
     connection = pika.BlockingConnection(pika.ConnectionParameters(rabbitMQ_server, int(rabbitMQ_port), '/', credentials))
     channel = connection.channel()
