@@ -1,0 +1,231 @@
+2016-01-21 20:25:27,573 polatis - INFO : Connecting to  switch <IP:Port = 10.99.99.227:830>
+
+2016-01-21 20:25:37,568 polatis - INFO : ex_ingress_ports : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+
+
+2016-01-21 20:25:37,568 polatis - INFO : ex_egress_ports : [17, 18, 19, 20, 21, 22, 23, 24]
+
+
+       +-----------------------------------+       
+       |    cleanup_existing_connections   |
+       +-----------------------------------+       
+
+
+2016-01-21 20:25:37,568 polatis - INFO : -----[ create xml for cleanup the all oxc connections ]-----
+
+Sending request:  <?xml version="1.0" encoding="UTF-8"?><nc:rpc xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="urn:uuid:081c8546-c04f-11e5-ab93-005056be7599"><nc:edit-config><nc:target><nc:running/></nc:target><config><cross-connects xmlns="http://www.polatis.com/yang/optical-switch" nc:operation="delete"/></config></nc:edit-config></nc:rpc>
+
+
+
+2016-01-21 20:25:38,989 polatis - INFO : -----[ create xml for get operation ]-----
+
+Sending request:  <?xml version="1.0" encoding="UTF-8"?><nc:rpc xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="urn:uuid:08f58828-c04f-11e5-ab93-005056be7599"><nc:get><nc:filter type="subtree"><opsw:cross-connects xmlns:opsw="http://www.polatis.com/yang/optical-switch" xmlns:plts="http://www.polatis.com/yang/polatis-switch"/></nc:filter></nc:get></nc:rpc>
+
+
+
+2016-01-21 20:25:39,764 polatis - INFO : -----[ get - response from the switch ]-----
+
+<?xml version="1.0" ?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0"/>
+
+
+2016-01-21 20:25:39,764 polatis - INFO : -----[ validate the oxc connection ]-----
+
+
+2016-01-21 20:25:39,764 polatis - INFO : required_ingress_ports : []
+2016-01-21 20:25:39,764 polatis - INFO : required egress ports : []
+
+
+2016-01-21 20:25:39,765 polatis - INFO : parsed_ingress_ports : []
+2016-01-21 20:25:39,765 polatis - INFO : parsed egress ports : []
+
+
+2016-01-21 20:25:39,765 polatis - INFO : compare the both ingress and egress ports : PASS
+
+       +--------------------------------------+       
+       |    get_editconfig_create_operation   |
+       +--------------------------------------+       
+
+
+2016-01-21 20:25:39,766 polatis - INFO : create xml using CREATE operation
+2016-01-21 20:25:39,767 polatis - INFO : ingress port list: ['1', '2', '3']
+2016-01-21 20:25:39,767 polatis - INFO : egress port list : ['17', '18', '19']
+
+
+2016-01-21 20:25:39,767 polatis - INFO : pass xml for edit-config operation
+
+Sending request:  <?xml version="1.0" encoding="UTF-8"?><nc:rpc xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="urn:uuid:096c4724-c04f-11e5-ab93-005056be7599"><nc:edit-config><nc:target><nc:running/></nc:target><config><cross-connects xmlns="http://www.polatis.com/yang/optical-switch"><pairs operation="create"><ingress>1</ingress><egress>17</egress></pairs><pairs operation="create"><ingress>2</ingress><egress>18</egress></pairs><pairs operation="create"><ingress>3</ingress><egress>19</egress></pairs></cross-connects></config></nc:edit-config></nc:rpc>
+
+
+
+2016-01-21 20:25:40,688 polatis - INFO : edit-config - response from the switch
+
+<?xml version="1.0" encoding="UTF-8"?>
+<rpc-reply xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="urn:uuid:096c4724-c04f-11e5-ab93-005056be7599" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0"><ok/></rpc-reply>
+
+
+2016-01-21 20:25:40,688 polatis - INFO : -----[ create xml using get-config operation ]-----
+Sending request:  <?xml version="1.0" encoding="UTF-8"?><nc:rpc xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="urn:uuid:09f8ea62-c04f-11e5-ab93-005056be7599"><nc:get-config><nc:source><nc:running/></nc:source><nc:filter type="subtree"><opsw:cross-connects xmlns:opsw="http://www.polatis.com/yang/optical-switch" xmlns:plts="http://www.polatis.com/yang/polatis-switch"/></nc:filter></nc:get-config></nc:rpc>
+
+
+
+2016-01-21 20:25:41,411 polatis - INFO : -----[ getconfig - response from the switch ]-----
+
+<?xml version="1.0" ?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <cross-connects xmlns="http://www.polatis.com/yang/optical-switch">
+  <pairs>
+   <ingress>1</ingress>
+   <egress>17</egress>
+  </pairs>
+  <pairs>
+   <ingress>2</ingress>
+   <egress>18</egress>
+  </pairs>
+  <pairs>
+   <ingress>3</ingress>
+   <egress>19</egress>
+  </pairs>
+ </cross-connects>
+</data>
+
+
+2016-01-21 20:25:41,412 polatis - INFO : -----[ validate the oxc connection ]-----
+
+
+2016-01-21 20:25:41,413 polatis - INFO : required_ingress_ports : ['1', '2', '3']
+2016-01-21 20:25:41,413 polatis - INFO : required egress ports : ['17', '18', '19']
+
+
+2016-01-21 20:25:41,413 polatis - INFO : parsed_ingress_ports : ['1', '2', '3']
+2016-01-21 20:25:41,413 polatis - INFO : parsed egress ports : ['17', '18', '19']
+
+
+2016-01-21 20:25:41,413 polatis - INFO : compare the both ingress and egress ports : PASS
+
+       +------------------------------+       
+       |    getconfig_crossconnects   |
+       +------------------------------+       
+
+
+2016-01-21 20:25:41,415 polatis - INFO : -----[ create oxc conection ]-----
+
+2016-01-21 20:25:41,415 polatis - INFO : ingress port list: ['1', '2', '3']
+2016-01-21 20:25:41,415 polatis - INFO : egress port list : ['17', '18', '19']
+
+
+2016-01-21 20:25:41,416 polatis - INFO : pass xml for edit-config operation
+
+Sending request:  <?xml version="1.0" encoding="UTF-8"?><nc:rpc xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="urn:uuid:0a67dc38-c04f-11e5-ab93-005056be7599"><nc:edit-config><nc:target><nc:running/></nc:target><config><cross-connects xmlns="http://www.polatis.com/yang/optical-switch"><pairs><ingress>1</ingress><egress>17</egress></pairs><pairs><ingress>2</ingress><egress>18</egress></pairs><pairs><ingress>3</ingress><egress>19</egress></pairs></cross-connects></config></nc:edit-config></nc:rpc>
+
+
+
+2016-01-21 20:25:42,939 polatis - INFO : edit-config - response from the switch
+
+<?xml version="1.0" encoding="UTF-8"?>
+<rpc-reply xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="urn:uuid:0a67dc38-c04f-11e5-ab93-005056be7599" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0"><ok/></rpc-reply>
+
+
+2016-01-21 20:25:42,939 polatis - INFO : -----[ create xml for get-config operation ]-----
+
+Sending request:  <?xml version="1.0" encoding="UTF-8"?><nc:rpc xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="urn:uuid:0b4fe186-c04f-11e5-ab93-005056be7599"><nc:get-config><nc:source><nc:running/></nc:source><nc:filter type="subtree"><opsw:cross-connects xmlns:opsw="http://www.polatis.com/yang/optical-switch" xmlns:plts="http://www.polatis.com/yang/polatis-switch"/></nc:filter></nc:get-config></nc:rpc>
+
+
+
+2016-01-21 20:25:43,959 polatis - INFO : -----[ getconfig - response from the switch ]-----
+
+<?xml version="1.0" ?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <cross-connects xmlns="http://www.polatis.com/yang/optical-switch">
+  <pairs>
+   <ingress>1</ingress>
+   <egress>17</egress>
+  </pairs>
+  <pairs>
+   <ingress>2</ingress>
+   <egress>18</egress>
+  </pairs>
+  <pairs>
+   <ingress>3</ingress>
+   <egress>19</egress>
+  </pairs>
+ </cross-connects>
+</data>
+
+
+2016-01-21 20:25:43,960 polatis - INFO : -----[ validate the oxc connection ]-----
+
+
+2016-01-21 20:25:43,960 polatis - INFO : required_ingress_ports : ['1', '2', '3']
+2016-01-21 20:25:43,960 polatis - INFO : required egress ports : ['17', '18', '19']
+
+
+2016-01-21 20:25:43,960 polatis - INFO : parsed_ingress_ports : ['1', '2', '3']
+2016-01-21 20:25:43,961 polatis - INFO : parsed egress ports : ['17', '18', '19']
+
+
+2016-01-21 20:25:43,961 polatis - INFO : compare the both ingress and egress ports : PASS
+
+       +------------------------+       
+       |    get_crossconnects   |
+       +------------------------+       
+
+
+2016-01-21 20:25:43,962 polatis - INFO : -----[ create oxc conection ]-----
+
+2016-01-21 20:25:43,963 polatis - INFO : ingress port list: ['1', '2', '3']
+2016-01-21 20:25:43,963 polatis - INFO : egress port list : ['17', '18', '19']
+
+
+2016-01-21 20:25:43,963 polatis - INFO : pass xml for edit-config operation
+
+Sending request:  <?xml version="1.0" encoding="UTF-8"?><nc:rpc xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="urn:uuid:0bec1786-c04f-11e5-ab93-005056be7599"><nc:edit-config><nc:target><nc:running/></nc:target><config><cross-connects xmlns="http://www.polatis.com/yang/optical-switch"><pairs><ingress>1</ingress><egress>17</egress></pairs><pairs><ingress>2</ingress><egress>18</egress></pairs><pairs><ingress>3</ingress><egress>19</egress></pairs></cross-connects></config></nc:edit-config></nc:rpc>
+
+
+
+2016-01-21 20:25:44,680 polatis - INFO : edit-config - response from the switch
+
+<?xml version="1.0" encoding="UTF-8"?>
+<rpc-reply xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="urn:uuid:0bec1786-c04f-11e5-ab93-005056be7599" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0"><ok/></rpc-reply>
+
+
+2016-01-21 20:25:44,680 polatis - INFO : -----[ create xml for get operation ]-----
+
+Sending request:  <?xml version="1.0" encoding="UTF-8"?><nc:rpc xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="urn:uuid:0c5987d0-c04f-11e5-ab93-005056be7599"><nc:get><nc:filter type="subtree"><opsw:cross-connects xmlns:opsw="http://www.polatis.com/yang/optical-switch" xmlns:plts="http://www.polatis.com/yang/polatis-switch"/></nc:filter></nc:get></nc:rpc>
+
+
+
+2016-01-21 20:25:45,348 polatis - INFO : -----[ get - response from the switch ]-----
+
+<?xml version="1.0" ?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <cross-connects xmlns="http://www.polatis.com/yang/optical-switch">
+  <pairs>
+   <ingress>1</ingress>
+   <egress>17</egress>
+  </pairs>
+  <pairs>
+   <ingress>2</ingress>
+   <egress>18</egress>
+  </pairs>
+  <pairs>
+   <ingress>3</ingress>
+   <egress>19</egress>
+  </pairs>
+ </cross-connects>
+</data>
+
+
+2016-01-21 20:25:45,349 polatis - INFO : -----[ validate the oxc connection ]-----
+
+
+2016-01-21 20:25:45,350 polatis - INFO : required_ingress_ports : ['1', '2', '3']
+2016-01-21 20:25:45,350 polatis - INFO : required egress ports : ['17', '18', '19']
+
+
+2016-01-21 20:25:45,350 polatis - INFO : parsed_ingress_ports : ['1', '2', '3']
+2016-01-21 20:25:45,350 polatis - INFO : parsed egress ports : ['17', '18', '19']
+
+
+2016-01-21 20:25:45,350 polatis - INFO : compare the both ingress and egress ports : PASS
+

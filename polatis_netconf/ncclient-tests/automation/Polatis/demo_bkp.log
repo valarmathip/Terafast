@@ -1,0 +1,93 @@
+lib.netconf.crossconnects: INFO: Connecting to  switch <IP:Port = 10.99.99.227:830>
+
+lib.netconf.crossconnects: INFO: ex_ingress_ports : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+
+
+lib.netconf.crossconnects: INFO: ex_egress_ports : [17, 18, 19, 20, 21, 22, 23, 24]
+
+
+lib.netconf.crossconnects: INFO: 
+
+       +----------------+       
+       |    get_pairs   |
+       +----------------+       
+
+
+lib.netconf.crossconnects: INFO: -----[ create oxc conection ]-----
+
+lib.netconf.crossconnects: INFO: ingress port list: ['1', '2', '3']
+lib.netconf.crossconnects: INFO: egress port list : ['17', '18', '19']
+
+
+lib.netconf.crossconnects: INFO: pass xml for edit-config operation
+
+Sending request:  <?xml version="1.0" encoding="UTF-8"?><nc:rpc xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="urn:uuid:916d00d4-c01b-11e5-b67a-005056be7599"><nc:edit-config><nc:target><nc:running/></nc:target><config><cross-connects xmlns="http://www.polatis.com/yang/optical-switch"><pairs><ingress>1</ingress><egress>17</egress></pairs><pairs><ingress>2</ingress><egress>18</egress></pairs><pairs><ingress>3</ingress><egress>19</egress></pairs></cross-connects></config></nc:edit-config></nc:rpc>
+
+
+
+lib.netconf.crossconnects: INFO: edit-config - response from the switch
+
+<?xml version="1.0" encoding="UTF-8"?>
+<rpc-reply xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="urn:uuid:916d00d4-c01b-11e5-b67a-005056be7599" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0"><ok/></rpc-reply>
+
+
+lib.netconf.crossconnects: INFO: -----[ create xml for get operation ]-----
+
+Sending request:  <?xml version="1.0" encoding="UTF-8"?><nc:rpc xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="urn:uuid:9292ca48-c01b-11e5-b67a-005056be7599"><nc:get><nc:filter type="subtree"><opsw:cross-connects xmlns:opsw="http://www.polatis.com/yang/optical-switch" xmlns:plts="http://www.polatis.com/yang/polatis-switch"><opsw:pairs/></opsw:cross-connects></nc:filter></nc:get></nc:rpc>
+
+
+
+lib.netconf.crossconnects: INFO: -----[ get - response from the switch ]-----
+
+<?xml version="1.0" ?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <cross-connects xmlns="http://www.polatis.com/yang/optical-switch">
+  <pairs>
+   <ingress>1</ingress>
+   <egress>17</egress>
+  </pairs>
+  <pairs>
+   <ingress>2</ingress>
+   <egress>18</egress>
+  </pairs>
+  <pairs>
+   <ingress>3</ingress>
+   <egress>19</egress>
+  </pairs>
+  <pairs>
+   <ingress>6</ingress>
+   <egress>24</egress>
+  </pairs>
+  <pairs>
+   <ingress>8</ingress>
+   <egress>22</egress>
+  </pairs>
+  <pairs>
+   <ingress>9</ingress>
+   <egress>21</egress>
+  </pairs>
+  <pairs>
+   <ingress>10</ingress>
+   <egress>20</egress>
+  </pairs>
+  <pairs>
+   <ingress>11</ingress>
+   <egress>23</egress>
+  </pairs>
+ </cross-connects>
+</data>
+
+
+lib.netconf.crossconnects: INFO: -----[ validate the oxc connection ]-----
+
+
+lib.netconf.crossconnects: INFO: required_ingress_ports : ['1', '2', '3']
+lib.netconf.crossconnects: INFO: required egress ports : ['17', '18', '19']
+
+
+lib.netconf.crossconnects: INFO: parsed_ingress_ports : ['1', '2', '3', '6', '8', '9', '10', '11']
+lib.netconf.crossconnects: INFO: parsed egress ports : ['17', '18', '19', '24', '22', '21', '20', '23']
+
+
+lib.netconf.crossconnects: ERROR: comparision failed : FAIL
+
