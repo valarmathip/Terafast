@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <product-information xmlns="http://www.polatis.com/yang/optical-switch">
+  <software-version>6.5.0.20</software-version>
+ </product-information>
+</data>

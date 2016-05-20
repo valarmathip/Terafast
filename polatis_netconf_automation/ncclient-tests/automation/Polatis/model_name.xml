@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <product-information xmlns="http://www.polatis.com/yang/optical-switch">
+  <model-name>N-OST-48x48-HA1-DMHEV-050</model-name>
+ </product-information>
+</data>

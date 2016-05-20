@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<rpc-reply message-id="urn:uuid:48eccf2e-1cff-11e6-9e2d-005056be7599">
+ <data>
+  <system-config>
+   <current-datetime>2016-05-18T19:19:04.09179-00:00</current-datetime>
+  </system-config>
+ </data>
+</rpc-reply>

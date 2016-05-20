@@ -1,0 +1,32 @@
+[login_credentials]
+
+host = 10.99.99.227
+port = 830
+user_name = admin
+password = root
+timeout = 60
+
+[cross_connects]
+
+ingress_ports_range = 1-16
+egress_ports_range = 17-24
+valid_ingress_ports = 1,2,3
+valid_egress_ports = 17,18,19
+invalid_ingress_ports = 18,19,20
+invalid_egress_ports = 25,26,27
+
+[ports]
+
+port_ids = 1,2,3
+port_label= port1,port2,port3
+port_state = PC_ENABLED,PC_DISABLED,PC_ENABLED
+lambda = 1550.0,1260.0,1640.0
+power_high_alarm = 25.0,10.0,25.0
+power_low_alarm = -60.0,-20.0,-60.0
+power_high_warning_offset = 25.0,25.0,15.0
+power_low_warning_offset = 0.0,-20.0,0.0
+power_alarm_control = POWER_ALARM_DISABLED,POWER_ALARM_CONTINUOUS,POWER_ALARM_SINGLE
+offset = 10.0,0.0,10.0
+averaging_time_select = 1,4,7
+power_alarm_hysteresis = 1.0,3.0,5.0
+power_alarm_clear_holdoff = 60,360,3600

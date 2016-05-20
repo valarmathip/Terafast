@@ -1,0 +1,11 @@
+import sys
+
+
+while 1:
+    for i in range(1, 5):
+        print i
+        if i == 3:
+           sys.exit()
+           prinnt "%%%%%%%%%%%%%%%"
+        else:
+           print i

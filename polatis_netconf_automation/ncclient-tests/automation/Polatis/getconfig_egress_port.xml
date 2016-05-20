@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <cross-connects xmlns="http://www.polatis.com/yang/optical-switch">
+  <pairs>
+   <egress>49</egress>
+  </pairs>
+  <pairs>
+   <egress>50</egress>
+  </pairs>
+  <pairs>
+   <egress>51</egress>
+  </pairs>
+ </cross-connects>
+</data>

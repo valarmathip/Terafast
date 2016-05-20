@@ -1,0 +1,2222 @@
+2016-02-02 12:10:32,828 - Polatis - INFO - connecting ot switch <IP:port = 10.99.99.227:830>
+
+2016-02-02 12:10:37,929 - Polatis - INFO - 
+
+       +-----------------------------+       
+       | 1 -  get - selectedPortInfo |
+       +-----------------------------+       
+
+
+2016-02-02 12:10:37,932 - Polatis - INFO - <ports information> sub tags name are  : ['port-label', 'opm', 'port-id', 'port-status']
+
+
+2016-02-02 12:10:37,933 - Polatis - INFO - <port> port-ids : 1,4,10
+
+
+2016-02-02 12:10:37,933 - Polatis - INFO - <opm> sub tags : power,lambda
+
+
+2016-02-02 12:10:37,935 - Polatis - INFO - Quering for running configuration data from switch using get
+
+
+2016-02-02 12:10:37,935 - Polatis - INFO - Get  - pass XML str to the switch...
+
+
+2016-02-02 12:10:37,941 - Polatis - INFO - xml str is : 
+
+<?xml version="1.0" ?>
+<opsw:ports xmlns:opsw="http://www.polatis.com/yang/optical-switch" xmlns:plts="http://www.polatis.com/yang/polatis-switch">
+ <opsw:port>
+  <opsw:port-id>1</opsw:port-id>
+  <opsw:port-label/>
+  <opsw:opm>
+   <opsw:power/>
+   <opsw:lambda/>
+  </opsw:opm>
+  <opsw:port-status/>
+ </opsw:port>
+ <opsw:port>
+  <opsw:port-id>4</opsw:port-id>
+  <opsw:port-label/>
+  <opsw:opm>
+   <opsw:power/>
+   <opsw:lambda/>
+  </opsw:opm>
+  <opsw:port-status/>
+ </opsw:port>
+ <opsw:port>
+  <opsw:port-id>10</opsw:port-id>
+  <opsw:port-label/>
+  <opsw:opm>
+   <opsw:power/>
+   <opsw:lambda/>
+  </opsw:opm>
+  <opsw:port-status/>
+ </opsw:port>
+</opsw:ports>
+
+
+
+2016-02-02 12:10:39,173 - Polatis - INFO - Get - Output from the switch
+
+<?xml version="1.0" ?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <ports xmlns="http://www.polatis.com/yang/optical-switch">
+  <port>
+   <port-id>1</port-id>
+   <port-label/>
+   <opm>
+    <lambda>1550.0</lambda>
+    <power>7.34</power>
+   </opm>
+   <port-status>PO_DISABLED</port-status>
+  </port>
+  <port>
+   <port-id>4</port-id>
+   <port-label/>
+   <opm>
+    <lambda>1550.0</lambda>
+    <power>-32.34</power>
+   </opm>
+   <port-status>PO_DISABLED</port-status>
+  </port>
+  <port>
+   <port-id>10</port-id>
+   <port-label/>
+   <opm>
+    <lambda>1550.0</lambda>
+    <power>-32.65</power>
+   </opm>
+   <port-status>PO_DISABLED</port-status>
+  </port>
+ </ports>
+</data>
+
+
+2016-02-02 12:12:41,125 - Polatis - INFO - connecting ot switch <IP:port = 10.99.99.227:830>
+
+2016-02-02 12:12:46,310 - Polatis - INFO - 
+
+       +-----------------------------+       
+       | 1 -  get - selectedPortInfo |
+       +-----------------------------+       
+
+
+2016-02-02 12:12:46,314 - Polatis - INFO - <ports information> sub tags name are  : ['port-label', 'opm', 'port-id', 'port-status']
+
+
+2016-02-02 12:12:46,315 - Polatis - INFO - <port> port-ids : 1,4,10
+
+
+2016-02-02 12:12:46,315 - Polatis - INFO - <opm> sub tags : power,lambda,power-low-alarm
+
+
+2016-02-02 12:12:46,317 - Polatis - INFO - Quering for running configuration data from switch using get
+
+
+2016-02-02 12:12:46,317 - Polatis - INFO - Get  - pass XML str to the switch...
+
+
+2016-02-02 12:12:46,323 - Polatis - INFO - xml str is : 
+
+<?xml version="1.0" ?>
+<opsw:ports xmlns:opsw="http://www.polatis.com/yang/optical-switch" xmlns:plts="http://www.polatis.com/yang/polatis-switch">
+ <opsw:port>
+  <opsw:port-id>1</opsw:port-id>
+  <opsw:port-label/>
+  <opsw:opm>
+   <opsw:power/>
+   <opsw:lambda/>
+   <opsw:power-low-alarm/>
+  </opsw:opm>
+  <opsw:port-status/>
+ </opsw:port>
+ <opsw:port>
+  <opsw:port-id>4</opsw:port-id>
+  <opsw:port-label/>
+  <opsw:opm>
+   <opsw:power/>
+   <opsw:lambda/>
+   <opsw:power-low-alarm/>
+  </opsw:opm>
+  <opsw:port-status/>
+ </opsw:port>
+ <opsw:port>
+  <opsw:port-id>10</opsw:port-id>
+  <opsw:port-label/>
+  <opsw:opm>
+   <opsw:power/>
+   <opsw:lambda/>
+   <opsw:power-low-alarm/>
+  </opsw:opm>
+  <opsw:port-status/>
+ </opsw:port>
+</opsw:ports>
+
+
+
+2016-02-02 12:12:47,500 - Polatis - INFO - Get - Output from the switch
+
+<?xml version="1.0" ?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <ports xmlns="http://www.polatis.com/yang/optical-switch">
+  <port>
+   <port-id>1</port-id>
+   <port-label/>
+   <opm>
+    <lambda>1550.0</lambda>
+    <power-low-alarm>-60.0</power-low-alarm>
+    <power>7.3</power>
+   </opm>
+   <port-status>PO_DISABLED</port-status>
+  </port>
+  <port>
+   <port-id>4</port-id>
+   <port-label/>
+   <opm>
+    <lambda>1550.0</lambda>
+    <power-low-alarm>-60.0</power-low-alarm>
+    <power>-32.33</power>
+   </opm>
+   <port-status>PO_DISABLED</port-status>
+  </port>
+  <port>
+   <port-id>10</port-id>
+   <port-label/>
+   <opm>
+    <lambda>1550.0</lambda>
+    <power-low-alarm>-60.0</power-low-alarm>
+    <power>-32.65</power>
+   </opm>
+   <port-status>PO_DISABLED</port-status>
+  </port>
+ </ports>
+</data>
+
+
+2016-02-26 18:15:11,613 - Polatis - INFO - Connecting to  switch <IP:Port = 10.99.99.227:830>
+
+2016-02-26 18:15:17,684 - Polatis - INFO - 
+
+       +--------------------------------+       
+       | 1 -  get - product_information |
+       +--------------------------------+       
+
+
+2016-02-26 18:15:17,688 - Polatis - INFO - Quering for running configuration data from switch using get
+
+
+2016-02-26 18:15:17,688 - Polatis - INFO - -------[[[Get  - pass xml query to switch]]]-------
+
+
+2016-02-26 18:15:17,692 - Polatis - INFO - xml str is : 
+
+<?xml version="1.0" ?>
+<opsw:product-information xmlns:opsw="http://www.polatis.com/yang/optical-switch" xmlns:plts="http://www.polatis.com/yang/polatis-switch"/>
+
+
+
+2016-02-26 18:15:19,287 - Polatis - INFO - -------[[[Get - Output from the switch]]]-------
+
+<?xml version="1.0" ?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <product-information xmlns="http://www.polatis.com/yang/optical-switch">
+  <manufacturer>Polatis</manufacturer>
+  <serial-number>1828</serial-number>
+  <model-name>N-VST-16x08-HU1-MMHNP-800</model-name>
+  <software-version>6.3.1.4</software-version>
+  <ports>
+   <port-id>1</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>2</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>3</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>4</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>5</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>6</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>7</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>8</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>9</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>10</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>11</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>12</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>13</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>14</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>15</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>16</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>17</port-id>
+   <port-type>EGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>18</port-id>
+   <port-type>EGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>19</port-id>
+   <port-type>EGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>20</port-id>
+   <port-type>EGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>21</port-id>
+   <port-type>EGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>22</port-id>
+   <port-type>EGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>23</port-id>
+   <port-type>EGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>24</port-id>
+   <port-type>EGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>25</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>false</has_oxc>
+  </ports>
+  <ports>
+   <port-id>26</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>false</has_oxc>
+  </ports>
+  <ports>
+   <port-id>27</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>false</has_oxc>
+  </ports>
+  <ports>
+   <port-id>28</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>false</has_oxc>
+  </ports>
+  <ports>
+   <port-id>29</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>false</has_oxc>
+  </ports>
+  <ports>
+   <port-id>30</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>false</has_oxc>
+  </ports>
+  <ports>
+   <port-id>31</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>false</has_oxc>
+  </ports>
+  <ports>
+   <port-id>32</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>false</has_oxc>
+  </ports>
+ </product-information>
+</data>
+
+
+2016-02-26 18:15:19,293 - Polatis - INFO - 
+
+       +--------------------------------+       
+       | 2 -  get - selectedProductInfo |
+       +--------------------------------+       
+
+
+2016-02-26 18:15:19,294 - Polatis - INFO - <product information> sub tags name are  : ['ports', 'serial-number', 'manufacturer', 'model-name', 'software-version']
+
+
+2016-02-26 18:15:19,294 - Polatis - INFO - <ports> port-ids : 1-24
+
+
+2016-02-26 18:15:19,294 - Polatis - INFO - <ports> sub tags : port-type,has_opm,has_oxc
+
+
+2016-02-26 18:15:19,296 - Polatis - INFO - Quering for running configuration data from switch using get
+
+
+2016-02-26 18:15:19,297 - Polatis - INFO - -------[[[Get  - pass xml query to switch]]]-------
+
+
+2016-02-26 18:15:19,301 - Polatis - INFO - xml str is : 
+
+<?xml version="1.0" ?>
+<opsw:product-information xmlns:opsw="http://www.polatis.com/yang/optical-switch" xmlns:plts="http://www.polatis.com/yang/polatis-switch">
+ <opsw:ports>
+  <opsw:port-id>1</opsw:port-id>
+  <opsw:port-type/>
+  <opsw:has_opm/>
+  <opsw:has_oxc/>
+ </opsw:ports>
+ <opsw:ports>
+  <opsw:port-id>2</opsw:port-id>
+  <opsw:port-type/>
+  <opsw:has_opm/>
+  <opsw:has_oxc/>
+ </opsw:ports>
+ <opsw:ports>
+  <opsw:port-id>3</opsw:port-id>
+  <opsw:port-type/>
+  <opsw:has_opm/>
+  <opsw:has_oxc/>
+ </opsw:ports>
+ <opsw:ports>
+  <opsw:port-id>4</opsw:port-id>
+  <opsw:port-type/>
+  <opsw:has_opm/>
+  <opsw:has_oxc/>
+ </opsw:ports>
+ <opsw:ports>
+  <opsw:port-id>5</opsw:port-id>
+  <opsw:port-type/>
+  <opsw:has_opm/>
+  <opsw:has_oxc/>
+ </opsw:ports>
+ <opsw:ports>
+  <opsw:port-id>6</opsw:port-id>
+  <opsw:port-type/>
+  <opsw:has_opm/>
+  <opsw:has_oxc/>
+ </opsw:ports>
+ <opsw:ports>
+  <opsw:port-id>7</opsw:port-id>
+  <opsw:port-type/>
+  <opsw:has_opm/>
+  <opsw:has_oxc/>
+ </opsw:ports>
+ <opsw:ports>
+  <opsw:port-id>8</opsw:port-id>
+  <opsw:port-type/>
+  <opsw:has_opm/>
+  <opsw:has_oxc/>
+ </opsw:ports>
+ <opsw:ports>
+  <opsw:port-id>9</opsw:port-id>
+  <opsw:port-type/>
+  <opsw:has_opm/>
+  <opsw:has_oxc/>
+ </opsw:ports>
+ <opsw:ports>
+  <opsw:port-id>10</opsw:port-id>
+  <opsw:port-type/>
+  <opsw:has_opm/>
+  <opsw:has_oxc/>
+ </opsw:ports>
+ <opsw:ports>
+  <opsw:port-id>11</opsw:port-id>
+  <opsw:port-type/>
+  <opsw:has_opm/>
+  <opsw:has_oxc/>
+ </opsw:ports>
+ <opsw:ports>
+  <opsw:port-id>12</opsw:port-id>
+  <opsw:port-type/>
+  <opsw:has_opm/>
+  <opsw:has_oxc/>
+ </opsw:ports>
+ <opsw:ports>
+  <opsw:port-id>13</opsw:port-id>
+  <opsw:port-type/>
+  <opsw:has_opm/>
+  <opsw:has_oxc/>
+ </opsw:ports>
+ <opsw:ports>
+  <opsw:port-id>14</opsw:port-id>
+  <opsw:port-type/>
+  <opsw:has_opm/>
+  <opsw:has_oxc/>
+ </opsw:ports>
+ <opsw:ports>
+  <opsw:port-id>15</opsw:port-id>
+  <opsw:port-type/>
+  <opsw:has_opm/>
+  <opsw:has_oxc/>
+ </opsw:ports>
+ <opsw:ports>
+  <opsw:port-id>16</opsw:port-id>
+  <opsw:port-type/>
+  <opsw:has_opm/>
+  <opsw:has_oxc/>
+ </opsw:ports>
+ <opsw:ports>
+  <opsw:port-id>17</opsw:port-id>
+  <opsw:port-type/>
+  <opsw:has_opm/>
+  <opsw:has_oxc/>
+ </opsw:ports>
+ <opsw:ports>
+  <opsw:port-id>18</opsw:port-id>
+  <opsw:port-type/>
+  <opsw:has_opm/>
+  <opsw:has_oxc/>
+ </opsw:ports>
+ <opsw:ports>
+  <opsw:port-id>19</opsw:port-id>
+  <opsw:port-type/>
+  <opsw:has_opm/>
+  <opsw:has_oxc/>
+ </opsw:ports>
+ <opsw:ports>
+  <opsw:port-id>20</opsw:port-id>
+  <opsw:port-type/>
+  <opsw:has_opm/>
+  <opsw:has_oxc/>
+ </opsw:ports>
+ <opsw:ports>
+  <opsw:port-id>21</opsw:port-id>
+  <opsw:port-type/>
+  <opsw:has_opm/>
+  <opsw:has_oxc/>
+ </opsw:ports>
+ <opsw:ports>
+  <opsw:port-id>22</opsw:port-id>
+  <opsw:port-type/>
+  <opsw:has_opm/>
+  <opsw:has_oxc/>
+ </opsw:ports>
+ <opsw:ports>
+  <opsw:port-id>23</opsw:port-id>
+  <opsw:port-type/>
+  <opsw:has_opm/>
+  <opsw:has_oxc/>
+ </opsw:ports>
+ <opsw:ports>
+  <opsw:port-id>24</opsw:port-id>
+  <opsw:port-type/>
+  <opsw:has_opm/>
+  <opsw:has_oxc/>
+ </opsw:ports>
+ <opsw:serial-number/>
+ <opsw:manufacturer/>
+ <opsw:model-name/>
+ <opsw:software-version/>
+</opsw:product-information>
+
+
+
+2016-02-26 18:15:20,287 - Polatis - INFO - -------[[[Get - Output from the switch]]]-------
+
+<?xml version="1.0" ?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <product-information xmlns="http://www.polatis.com/yang/optical-switch">
+  <manufacturer>Polatis</manufacturer>
+  <serial-number>1828</serial-number>
+  <model-name>N-VST-16x08-HU1-MMHNP-800</model-name>
+  <software-version>6.3.1.4</software-version>
+  <ports>
+   <port-id>1</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>2</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>3</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>4</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>5</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>6</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>7</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>8</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>9</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>10</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>11</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>12</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>13</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>14</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>15</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>16</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>17</port-id>
+   <port-type>EGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>18</port-id>
+   <port-type>EGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>19</port-id>
+   <port-type>EGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>20</port-id>
+   <port-type>EGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>21</port-id>
+   <port-type>EGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>22</port-id>
+   <port-type>EGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>23</port-id>
+   <port-type>EGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>24</port-id>
+   <port-type>EGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+ </product-information>
+</data>
+
+
+2016-02-26 18:15:20,293 - Polatis - INFO - 
+
+       +--------------------------------+       
+       | 3 -  get - product_information |
+       +--------------------------------+       
+
+
+2016-02-26 18:15:20,293 - Polatis - INFO - Quering for running configuration data from switch using get
+
+
+2016-02-26 18:15:20,294 - Polatis - INFO - -------[[[Get  - pass xml query to switch]]]-------
+
+
+2016-02-26 18:15:20,294 - Polatis - INFO - xml str is : 
+
+<?xml version="1.0" ?>
+<opsw:product-information xmlns:opsw="http://www.polatis.com/yang/optical-switch" xmlns:plts="http://www.polatis.com/yang/polatis-switch"/>
+
+
+
+2016-02-26 18:15:21,127 - Polatis - INFO - -------[[[Get - Output from the switch]]]-------
+
+<?xml version="1.0" ?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <product-information xmlns="http://www.polatis.com/yang/optical-switch">
+  <manufacturer>Polatis</manufacturer>
+  <serial-number>1828</serial-number>
+  <model-name>N-VST-16x08-HU1-MMHNP-800</model-name>
+  <software-version>6.3.1.4</software-version>
+  <ports>
+   <port-id>1</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>2</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>3</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>4</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>5</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>6</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>7</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>8</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>9</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>10</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>11</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>12</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>13</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>14</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>15</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>16</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>17</port-id>
+   <port-type>EGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>18</port-id>
+   <port-type>EGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>19</port-id>
+   <port-type>EGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>20</port-id>
+   <port-type>EGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>21</port-id>
+   <port-type>EGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>22</port-id>
+   <port-type>EGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>23</port-id>
+   <port-type>EGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>24</port-id>
+   <port-type>EGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>25</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>false</has_oxc>
+  </ports>
+  <ports>
+   <port-id>26</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>false</has_oxc>
+  </ports>
+  <ports>
+   <port-id>27</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>false</has_oxc>
+  </ports>
+  <ports>
+   <port-id>28</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>false</has_oxc>
+  </ports>
+  <ports>
+   <port-id>29</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>false</has_oxc>
+  </ports>
+  <ports>
+   <port-id>30</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>false</has_oxc>
+  </ports>
+  <ports>
+   <port-id>31</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>false</has_oxc>
+  </ports>
+  <ports>
+   <port-id>32</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>false</has_oxc>
+  </ports>
+ </product-information>
+</data>
+
+
+2016-02-26 18:15:21,133 - Polatis - INFO - 
+
+       +-------------------------+       
+       | 4 -  get - port_has_oxc |
+       +-------------------------+       
+
+
+2016-02-26 18:15:21,134 - Polatis - INFO - Quering for running configuration data from switch using get
+
+
+2016-02-26 18:15:21,134 - Polatis - INFO - -------[[[Get  - pass xml query to switch]]]-------
+
+
+2016-02-26 18:15:21,135 - Polatis - INFO - xml str is : 
+
+<?xml version="1.0" ?>
+<opsw:product-information xmlns:opsw="http://www.polatis.com/yang/optical-switch" xmlns:plts="http://www.polatis.com/yang/polatis-switch">
+ <opsw:ports>
+  <opsw:has_oxc/>
+ </opsw:ports>
+</opsw:product-information>
+
+
+
+2016-02-26 18:15:22,312 - Polatis - INFO - -------[[[Get - Output from the switch]]]-------
+
+<?xml version="1.0" ?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <product-information xmlns="http://www.polatis.com/yang/optical-switch">
+  <ports>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <has_oxc>false</has_oxc>
+  </ports>
+  <ports>
+   <has_oxc>false</has_oxc>
+  </ports>
+  <ports>
+   <has_oxc>false</has_oxc>
+  </ports>
+  <ports>
+   <has_oxc>false</has_oxc>
+  </ports>
+  <ports>
+   <has_oxc>false</has_oxc>
+  </ports>
+  <ports>
+   <has_oxc>false</has_oxc>
+  </ports>
+  <ports>
+   <has_oxc>false</has_oxc>
+  </ports>
+  <ports>
+   <has_oxc>false</has_oxc>
+  </ports>
+ </product-information>
+</data>
+
+
+2016-02-26 18:15:22,319 - Polatis - INFO - 
+
+       +-------------------------+       
+       | 5 -  get - port_has_opm |
+       +-------------------------+       
+
+
+2016-02-26 18:15:22,322 - Polatis - INFO - Quering for running configuration data from switch using get
+
+
+2016-02-26 18:15:22,322 - Polatis - INFO - -------[[[Get  - pass xml query to switch]]]-------
+
+
+2016-02-26 18:15:22,323 - Polatis - INFO - xml str is : 
+
+<?xml version="1.0" ?>
+<opsw:product-information xmlns:opsw="http://www.polatis.com/yang/optical-switch" xmlns:plts="http://www.polatis.com/yang/polatis-switch">
+ <opsw:ports>
+  <opsw:has_opm/>
+ </opsw:ports>
+</opsw:product-information>
+
+
+
+2016-02-26 18:15:23,249 - Polatis - INFO - -------[[[Get - Output from the switch]]]-------
+
+<?xml version="1.0" ?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <product-information xmlns="http://www.polatis.com/yang/optical-switch">
+  <ports>
+   <has_opm>true</has_opm>
+  </ports>
+  <ports>
+   <has_opm>true</has_opm>
+  </ports>
+  <ports>
+   <has_opm>true</has_opm>
+  </ports>
+  <ports>
+   <has_opm>true</has_opm>
+  </ports>
+  <ports>
+   <has_opm>true</has_opm>
+  </ports>
+  <ports>
+   <has_opm>true</has_opm>
+  </ports>
+  <ports>
+   <has_opm>true</has_opm>
+  </ports>
+  <ports>
+   <has_opm>true</has_opm>
+  </ports>
+  <ports>
+   <has_opm>true</has_opm>
+  </ports>
+  <ports>
+   <has_opm>true</has_opm>
+  </ports>
+  <ports>
+   <has_opm>true</has_opm>
+  </ports>
+  <ports>
+   <has_opm>true</has_opm>
+  </ports>
+  <ports>
+   <has_opm>true</has_opm>
+  </ports>
+  <ports>
+   <has_opm>true</has_opm>
+  </ports>
+  <ports>
+   <has_opm>true</has_opm>
+  </ports>
+  <ports>
+   <has_opm>true</has_opm>
+  </ports>
+  <ports>
+   <has_opm>true</has_opm>
+  </ports>
+  <ports>
+   <has_opm>true</has_opm>
+  </ports>
+  <ports>
+   <has_opm>true</has_opm>
+  </ports>
+  <ports>
+   <has_opm>true</has_opm>
+  </ports>
+  <ports>
+   <has_opm>true</has_opm>
+  </ports>
+  <ports>
+   <has_opm>true</has_opm>
+  </ports>
+  <ports>
+   <has_opm>true</has_opm>
+  </ports>
+  <ports>
+   <has_opm>true</has_opm>
+  </ports>
+  <ports>
+   <has_opm>true</has_opm>
+  </ports>
+  <ports>
+   <has_opm>true</has_opm>
+  </ports>
+  <ports>
+   <has_opm>true</has_opm>
+  </ports>
+  <ports>
+   <has_opm>true</has_opm>
+  </ports>
+  <ports>
+   <has_opm>true</has_opm>
+  </ports>
+  <ports>
+   <has_opm>true</has_opm>
+  </ports>
+  <ports>
+   <has_opm>true</has_opm>
+  </ports>
+  <ports>
+   <has_opm>true</has_opm>
+  </ports>
+ </product-information>
+</data>
+
+
+2016-02-26 18:15:23,257 - Polatis - INFO - 
+
+       +----------------------+       
+       | 6 -  get - port_type |
+       +----------------------+       
+
+
+2016-02-26 18:15:23,258 - Polatis - INFO - Quering for running configuration data from switch using get
+
+
+2016-02-26 18:15:23,258 - Polatis - INFO - -------[[[Get  - pass xml query to switch]]]-------
+
+
+2016-02-26 18:15:23,259 - Polatis - INFO - xml str is : 
+
+<?xml version="1.0" ?>
+<opsw:product-information xmlns:opsw="http://www.polatis.com/yang/optical-switch" xmlns:plts="http://www.polatis.com/yang/polatis-switch">
+ <opsw:ports>
+  <opsw:port-type/>
+ </opsw:ports>
+</opsw:product-information>
+
+
+
+2016-02-26 18:15:23,884 - Polatis - INFO - -------[[[Get - Output from the switch]]]-------
+
+<?xml version="1.0" ?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <product-information xmlns="http://www.polatis.com/yang/optical-switch">
+  <ports>
+   <port-type>INGRESS_PORT</port-type>
+  </ports>
+  <ports>
+   <port-type>INGRESS_PORT</port-type>
+  </ports>
+  <ports>
+   <port-type>INGRESS_PORT</port-type>
+  </ports>
+  <ports>
+   <port-type>INGRESS_PORT</port-type>
+  </ports>
+  <ports>
+   <port-type>INGRESS_PORT</port-type>
+  </ports>
+  <ports>
+   <port-type>INGRESS_PORT</port-type>
+  </ports>
+  <ports>
+   <port-type>INGRESS_PORT</port-type>
+  </ports>
+  <ports>
+   <port-type>INGRESS_PORT</port-type>
+  </ports>
+  <ports>
+   <port-type>INGRESS_PORT</port-type>
+  </ports>
+  <ports>
+   <port-type>INGRESS_PORT</port-type>
+  </ports>
+  <ports>
+   <port-type>INGRESS_PORT</port-type>
+  </ports>
+  <ports>
+   <port-type>INGRESS_PORT</port-type>
+  </ports>
+  <ports>
+   <port-type>INGRESS_PORT</port-type>
+  </ports>
+  <ports>
+   <port-type>INGRESS_PORT</port-type>
+  </ports>
+  <ports>
+   <port-type>INGRESS_PORT</port-type>
+  </ports>
+  <ports>
+   <port-type>INGRESS_PORT</port-type>
+  </ports>
+  <ports>
+   <port-type>EGRESS_PORT</port-type>
+  </ports>
+  <ports>
+   <port-type>EGRESS_PORT</port-type>
+  </ports>
+  <ports>
+   <port-type>EGRESS_PORT</port-type>
+  </ports>
+  <ports>
+   <port-type>EGRESS_PORT</port-type>
+  </ports>
+  <ports>
+   <port-type>EGRESS_PORT</port-type>
+  </ports>
+  <ports>
+   <port-type>EGRESS_PORT</port-type>
+  </ports>
+  <ports>
+   <port-type>EGRESS_PORT</port-type>
+  </ports>
+  <ports>
+   <port-type>EGRESS_PORT</port-type>
+  </ports>
+  <ports>
+   <port-type>INGRESS_PORT</port-type>
+  </ports>
+  <ports>
+   <port-type>INGRESS_PORT</port-type>
+  </ports>
+  <ports>
+   <port-type>INGRESS_PORT</port-type>
+  </ports>
+  <ports>
+   <port-type>INGRESS_PORT</port-type>
+  </ports>
+  <ports>
+   <port-type>INGRESS_PORT</port-type>
+  </ports>
+  <ports>
+   <port-type>INGRESS_PORT</port-type>
+  </ports>
+  <ports>
+   <port-type>INGRESS_PORT</port-type>
+  </ports>
+  <ports>
+   <port-type>INGRESS_PORT</port-type>
+  </ports>
+ </product-information>
+</data>
+
+
+2016-02-26 18:15:23,890 - Polatis - INFO - 
+
+       +--------------------+       
+       | 7 -  get - port_id |
+       +--------------------+       
+
+
+2016-02-26 18:15:23,891 - Polatis - INFO - Quering for running configuration data from switch using get
+
+
+2016-02-26 18:15:23,891 - Polatis - INFO - -------[[[Get  - pass xml query to switch]]]-------
+
+
+2016-02-26 18:15:23,894 - Polatis - INFO - xml str is : 
+
+<?xml version="1.0" ?>
+<opsw:product-information xmlns:opsw="http://www.polatis.com/yang/optical-switch" xmlns:plts="http://www.polatis.com/yang/polatis-switch">
+ <opsw:ports>
+  <opsw:port-id/>
+ </opsw:ports>
+</opsw:product-information>
+
+
+
+2016-02-26 18:15:24,420 - Polatis - INFO - -------[[[Get - Output from the switch]]]-------
+
+<?xml version="1.0" ?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <product-information xmlns="http://www.polatis.com/yang/optical-switch">
+  <ports>
+   <port-id>1</port-id>
+  </ports>
+  <ports>
+   <port-id>2</port-id>
+  </ports>
+  <ports>
+   <port-id>3</port-id>
+  </ports>
+  <ports>
+   <port-id>4</port-id>
+  </ports>
+  <ports>
+   <port-id>5</port-id>
+  </ports>
+  <ports>
+   <port-id>6</port-id>
+  </ports>
+  <ports>
+   <port-id>7</port-id>
+  </ports>
+  <ports>
+   <port-id>8</port-id>
+  </ports>
+  <ports>
+   <port-id>9</port-id>
+  </ports>
+  <ports>
+   <port-id>10</port-id>
+  </ports>
+  <ports>
+   <port-id>11</port-id>
+  </ports>
+  <ports>
+   <port-id>12</port-id>
+  </ports>
+  <ports>
+   <port-id>13</port-id>
+  </ports>
+  <ports>
+   <port-id>14</port-id>
+  </ports>
+  <ports>
+   <port-id>15</port-id>
+  </ports>
+  <ports>
+   <port-id>16</port-id>
+  </ports>
+  <ports>
+   <port-id>17</port-id>
+  </ports>
+  <ports>
+   <port-id>18</port-id>
+  </ports>
+  <ports>
+   <port-id>19</port-id>
+  </ports>
+  <ports>
+   <port-id>20</port-id>
+  </ports>
+  <ports>
+   <port-id>21</port-id>
+  </ports>
+  <ports>
+   <port-id>22</port-id>
+  </ports>
+  <ports>
+   <port-id>23</port-id>
+  </ports>
+  <ports>
+   <port-id>24</port-id>
+  </ports>
+  <ports>
+   <port-id>25</port-id>
+  </ports>
+  <ports>
+   <port-id>26</port-id>
+  </ports>
+  <ports>
+   <port-id>27</port-id>
+  </ports>
+  <ports>
+   <port-id>28</port-id>
+  </ports>
+  <ports>
+   <port-id>29</port-id>
+  </ports>
+  <ports>
+   <port-id>30</port-id>
+  </ports>
+  <ports>
+   <port-id>31</port-id>
+  </ports>
+  <ports>
+   <port-id>32</port-id>
+  </ports>
+ </product-information>
+</data>
+
+
+2016-02-26 18:15:24,426 - Polatis - INFO - 
+
+       +------------------+       
+       | 8 -  get - ports |
+       +------------------+       
+
+
+2016-02-26 18:15:24,429 - Polatis - INFO - Quering for running configuration data from switch using get
+
+
+2016-02-26 18:15:24,430 - Polatis - INFO - -------[[[Get  - pass xml query to switch]]]-------
+
+
+2016-02-26 18:15:24,431 - Polatis - INFO - xml str is : 
+
+<?xml version="1.0" ?>
+<opsw:product-information xmlns:opsw="http://www.polatis.com/yang/optical-switch" xmlns:plts="http://www.polatis.com/yang/polatis-switch">
+ <opsw:ports/>
+</opsw:product-information>
+
+
+
+2016-02-26 18:15:26,618 - Polatis - INFO - -------[[[Get - Output from the switch]]]-------
+
+<?xml version="1.0" ?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <product-information xmlns="http://www.polatis.com/yang/optical-switch">
+  <ports>
+   <port-id>1</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>2</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>3</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>4</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>5</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>6</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>7</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>8</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>9</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>10</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>11</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>12</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>13</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>14</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>15</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>16</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>17</port-id>
+   <port-type>EGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>18</port-id>
+   <port-type>EGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>19</port-id>
+   <port-type>EGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>20</port-id>
+   <port-type>EGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>21</port-id>
+   <port-type>EGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>22</port-id>
+   <port-type>EGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>23</port-id>
+   <port-type>EGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>24</port-id>
+   <port-type>EGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>25</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>false</has_oxc>
+  </ports>
+  <ports>
+   <port-id>26</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>false</has_oxc>
+  </ports>
+  <ports>
+   <port-id>27</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>false</has_oxc>
+  </ports>
+  <ports>
+   <port-id>28</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>false</has_oxc>
+  </ports>
+  <ports>
+   <port-id>29</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>false</has_oxc>
+  </ports>
+  <ports>
+   <port-id>30</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>false</has_oxc>
+  </ports>
+  <ports>
+   <port-id>31</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>false</has_oxc>
+  </ports>
+  <ports>
+   <port-id>32</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>true</has_opm>
+   <has_oxc>false</has_oxc>
+  </ports>
+ </product-information>
+</data>
+
+
+2016-02-26 18:15:26,624 - Polatis - INFO - 
+
+       +-----------------------------+       
+       | 9 -  get - software_version |
+       +-----------------------------+       
+
+
+2016-02-26 18:15:26,624 - Polatis - INFO - Quering for running configuration data from switch using get
+
+
+2016-02-26 18:15:26,624 - Polatis - INFO - -------[[[Get  - pass xml query to switch]]]-------
+
+
+2016-02-26 18:15:26,624 - Polatis - INFO - xml str is : 
+
+<?xml version="1.0" ?>
+<opsw:product-information xmlns:opsw="http://www.polatis.com/yang/optical-switch" xmlns:plts="http://www.polatis.com/yang/polatis-switch">
+ <software-version/>
+</opsw:product-information>
+
+
+
+2016-02-26 18:15:27,242 - Polatis - INFO - -------[[[Get - Output from the switch]]]-------
+
+<?xml version="1.0" ?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <product-information xmlns="http://www.polatis.com/yang/optical-switch">
+  <software-version>6.3.1.4</software-version>
+ </product-information>
+</data>
+
+
+2016-02-26 18:15:27,247 - Polatis - INFO - 
+
+       +------------------------+       
+       | 10 -  get - model_name |
+       +------------------------+       
+
+
+2016-02-26 18:15:27,247 - Polatis - INFO - Quering for running configuration data from switch using get
+
+
+2016-02-26 18:15:27,248 - Polatis - INFO - -------[[[Get  - pass xml query to switch]]]-------
+
+
+2016-02-26 18:15:27,249 - Polatis - INFO - xml str is : 
+
+<?xml version="1.0" ?>
+<opsw:product-information xmlns:opsw="http://www.polatis.com/yang/optical-switch" xmlns:plts="http://www.polatis.com/yang/polatis-switch">
+ <opsw:model-name/>
+</opsw:product-information>
+
+
+
+2016-02-26 18:15:27,918 - Polatis - INFO - -------[[[Get - Output from the switch]]]-------
+
+<?xml version="1.0" ?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <product-information xmlns="http://www.polatis.com/yang/optical-switch">
+  <model-name>N-VST-16x08-HU1-MMHNP-800</model-name>
+ </product-information>
+</data>
+
+
+2016-02-26 18:15:27,921 - Polatis - INFO - 
+
+       +--------------------------+       
+       | 11 -  get - manufacturer |
+       +--------------------------+       
+
+
+2016-02-26 18:15:27,921 - Polatis - INFO - Quering for running configuration data from switch using get
+
+
+2016-02-26 18:15:27,922 - Polatis - INFO - -------[[[Get  - pass xml query to switch]]]-------
+
+
+2016-02-26 18:15:27,923 - Polatis - INFO - xml str is : 
+
+<?xml version="1.0" ?>
+<opsw:product-information xmlns:opsw="http://www.polatis.com/yang/optical-switch" xmlns:plts="http://www.polatis.com/yang/polatis-switch">
+ <opsw:manufacturer/>
+</opsw:product-information>
+
+
+
+2016-02-26 18:15:28,642 - Polatis - INFO - -------[[[Get - Output from the switch]]]-------
+
+<?xml version="1.0" ?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <product-information xmlns="http://www.polatis.com/yang/optical-switch">
+  <manufacturer>Polatis</manufacturer>
+ </product-information>
+</data>
+
+
+2016-05-20 17:46:53,958 - Polatis - INFO - Connecting to  switch <IP:Port = 10.99.99.227:830>
+
+2016-05-20 17:47:20,328 - Polatis - INFO - Connecting to  switch <IP:Port = 10.99.99.225:830>
+
+2016-05-20 17:47:25,789 - Polatis - INFO - 
+
+       +--------------------------------+       
+       | 1 -  get - selectedProductInfo |
+       +--------------------------------+       
+
+
+2016-05-20 17:47:25,793 - Polatis - INFO - <product information> sub tags name are  : ['ports', 'serial-number', 'manufacturer', 'model-name', 'software-version']
+
+
+2016-05-20 17:47:25,794 - Polatis - INFO - <ports> port-ids : 1
+
+
+2016-05-20 17:47:25,794 - Polatis - INFO - <ports> sub tags : port-type,has_opm,has_oxc
+
+
+2016-05-20 17:47:25,795 - Polatis - INFO - Quering for running configuration data from switch using get
+
+
+2016-05-20 17:47:25,796 - Polatis - INFO - -------[[[Get  - pass xml query to switch]]]-------
+
+
+2016-05-20 17:47:25,801 - Polatis - INFO - xml str is : 
+
+<?xml version="1.0" ?>
+<opsw:product-information xmlns:opsw="http://www.polatis.com/yang/optical-switch" xmlns:plts="http://www.polatis.com/yang/polatis-switch">
+ <opsw:serial-number/>
+ <opsw:manufacturer/>
+ <opsw:model-name/>
+ <opsw:software-version/>
+</opsw:product-information>
+
+
+
+2016-05-20 17:47:26,878 - Polatis - INFO - -------[[[Get - Output from the switch]]]-------
+
+<?xml version="1.0" ?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <product-information xmlns="http://www.polatis.com/yang/optical-switch">
+  <manufacturer>Polatis</manufacturer>
+  <serial-number>1533</serial-number>
+  <model-name>N-OST-48x48-HA1-DMHEV-050</model-name>
+  <software-version>6.5.0.20</software-version>
+ </product-information>
+</data>
+
+
+2016-05-20 17:49:55,890 - Polatis - INFO - Connecting to  switch <IP:Port = 10.99.99.225:830>
+
+2016-05-20 17:50:01,694 - Polatis - INFO - 
+
+       +--------------------------------+       
+       | 1 -  get - selectedProductInfo |
+       +--------------------------------+       
+
+
+2016-05-20 17:50:01,698 - Polatis - INFO - <product information> sub tags name are  : ['ports', 'serial-number', 'manufacturer', 'model-name', 'software-version']
+
+
+2016-05-20 17:50:01,699 - Polatis - INFO - <ports> port-ids : 1-3
+
+
+2016-05-20 17:50:01,699 - Polatis - INFO - <ports> sub tags : port-type,has_opm,has_oxc
+
+
+2016-05-20 17:50:01,701 - Polatis - INFO - Quering for running configuration data from switch using get
+
+
+2016-05-20 17:50:01,703 - Polatis - INFO - -------[[[Get  - pass xml query to switch]]]-------
+
+
+2016-05-20 17:50:01,709 - Polatis - INFO - xml str is : 
+
+<?xml version="1.0" ?>
+<opsw:product-information xmlns:opsw="http://www.polatis.com/yang/optical-switch" xmlns:plts="http://www.polatis.com/yang/polatis-switch">
+ <opsw:ports>
+  <opsw:port-id>1</opsw:port-id>
+  <opsw:port-type/>
+  <opsw:has_opm/>
+  <opsw:has_oxc/>
+ </opsw:ports>
+ <opsw:ports>
+  <opsw:port-id>2</opsw:port-id>
+  <opsw:port-type/>
+  <opsw:has_opm/>
+  <opsw:has_oxc/>
+ </opsw:ports>
+ <opsw:ports>
+  <opsw:port-id>3</opsw:port-id>
+  <opsw:port-type/>
+  <opsw:has_opm/>
+  <opsw:has_oxc/>
+ </opsw:ports>
+ <opsw:serial-number/>
+ <opsw:manufacturer/>
+ <opsw:model-name/>
+ <opsw:software-version/>
+</opsw:product-information>
+
+
+
+2016-05-20 17:50:03,288 - Polatis - INFO - -------[[[Get - Output from the switch]]]-------
+
+<?xml version="1.0" ?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <product-information xmlns="http://www.polatis.com/yang/optical-switch">
+  <manufacturer>Polatis</manufacturer>
+  <serial-number>1533</serial-number>
+  <model-name>N-OST-48x48-HA1-DMHEV-050</model-name>
+  <software-version>6.5.0.20</software-version>
+  <ports>
+   <port-id>1</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>false</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>2</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>false</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>3</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>false</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+ </product-information>
+</data>
+
+
+2016-05-20 17:54:56,103 - Polatis - INFO - Connecting to  switch <IP:Port = 10.99.99.225:830>
+
+2016-05-20 17:55:00,997 - Polatis - INFO - 
+
+       +--------------------------------+       
+       | 1 -  get - selectedProductInfo |
+       +--------------------------------+       
+
+
+2016-05-20 17:55:01,000 - Polatis - INFO - <product information> sub tags name are  : ['ports', 'serial-number', 'manufacturer', 'model-name', 'software-version']
+
+
+2016-05-20 17:55:01,001 - Polatis - INFO - <ports> port-ids : 1-3
+
+
+2016-05-20 17:55:01,001 - Polatis - INFO - <ports> sub tags : port-type,has_opm,has_oxc
+
+
+2016-05-20 17:55:01,004 - Polatis - INFO - Quering for running configuration data from switch using get
+
+
+2016-05-20 17:55:01,006 - Polatis - INFO - -------[[[Get  - pass xml query to switch]]]-------
+
+
+2016-05-20 17:55:01,011 - Polatis - INFO - xml str is : 
+
+<?xml version="1.0" ?>
+<opsw:product-information xmlns:opsw="http://www.polatis.com/yang/optical-switch" xmlns:plts="http://www.polatis.com/yang/polatis-switch">
+ <opsw:ports>
+  <opsw:port-id>1</opsw:port-id>
+  <opsw:port-type/>
+  <opsw:has_opm/>
+  <opsw:has_oxc/>
+ </opsw:ports>
+ <opsw:ports>
+  <opsw:port-id>2</opsw:port-id>
+  <opsw:port-type/>
+  <opsw:has_opm/>
+  <opsw:has_oxc/>
+ </opsw:ports>
+ <opsw:ports>
+  <opsw:port-id>3</opsw:port-id>
+  <opsw:port-type/>
+  <opsw:has_opm/>
+  <opsw:has_oxc/>
+ </opsw:ports>
+ <opsw:serial-number/>
+ <opsw:manufacturer/>
+ <opsw:model-name/>
+ <opsw:software-version/>
+</opsw:product-information>
+
+
+
+2016-05-20 17:55:02,290 - Polatis - INFO - -------[[[Get - Output from the switch]]]-------
+
+<?xml version="1.0" ?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <product-information xmlns="http://www.polatis.com/yang/optical-switch">
+  <manufacturer>Polatis</manufacturer>
+  <serial-number>1533</serial-number>
+  <model-name>N-OST-48x48-HA1-DMHEV-050</model-name>
+  <software-version>6.5.0.20</software-version>
+  <ports>
+   <port-id>1</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>false</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>2</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>false</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+  <ports>
+   <port-id>3</port-id>
+   <port-type>INGRESS_PORT</port-type>
+   <has_opm>false</has_opm>
+   <has_oxc>true</has_oxc>
+  </ports>
+ </product-information>
+</data>
+
+
+2016-05-20 17:56:52,942 - Polatis - INFO - Connecting to  switch <IP:Port = 10.99.99.225:830>
+
+2016-05-20 17:56:58,053 - Polatis - INFO - 
+
+       +--------------------------------+       
+       | 1 -  get - selectedProductInfo |
+       +--------------------------------+       
+
+
+2016-05-20 17:56:58,057 - Polatis - INFO - <product information> sub tags name are  : ['ports', 'serial-number', 'manufacturer', 'model-name', 'software-version']
+
+
+2016-05-20 17:56:58,058 - Polatis - INFO - <ports> port-ids : 1
+
+
+2016-05-20 17:56:58,059 - Polatis - INFO - <ports> sub tags : port-type,has_opm,has_oxc
+
+
+2016-05-20 17:56:58,060 - Polatis - INFO - Quering for running configuration data from switch using get
+
+
+2016-05-20 17:56:58,062 - Polatis - INFO - -------[[[Get  - pass xml query to switch]]]-------
+
+
+2016-05-20 17:56:58,066 - Polatis - INFO - xml str is : 
+
+<?xml version="1.0" ?>
+<opsw:product-information xmlns:opsw="http://www.polatis.com/yang/optical-switch" xmlns:plts="http://www.polatis.com/yang/polatis-switch">
+ <opsw:serial-number/>
+ <opsw:manufacturer/>
+ <opsw:model-name/>
+ <opsw:software-version/>
+</opsw:product-information>
+
+
+
+2016-05-20 17:56:59,491 - Polatis - INFO - -------[[[Get - Output from the switch]]]-------
+
+<?xml version="1.0" ?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <product-information xmlns="http://www.polatis.com/yang/optical-switch">
+  <manufacturer>Polatis</manufacturer>
+  <serial-number>1533</serial-number>
+  <model-name>N-OST-48x48-HA1-DMHEV-050</model-name>
+  <software-version>6.5.0.20</software-version>
+ </product-information>
+</data>
+
+
+2016-05-20 17:57:30,792 - Polatis - INFO - Connecting to  switch <IP:Port = 10.99.99.225:830>
+
+2016-05-20 17:57:35,887 - Polatis - INFO - 
+
+       +--------------------------------+       
+       | 1 -  get - selectedProductInfo |
+       +--------------------------------+       
+
+
+2016-05-20 17:57:35,890 - Polatis - INFO - <product information> sub tags name are  : ['ports', 'serial-number', 'manufacturer', 'model-name', 'software-version']
+
+
+2016-05-20 17:57:35,891 - Polatis - INFO - <ports> port-ids : 1
+
+
+2016-05-20 17:57:35,892 - Polatis - INFO - <ports> sub tags : port-type,has_opm,has_oxc
+
+
+2016-05-20 17:57:35,894 - Polatis - INFO - Quering for running configuration data from switch using get
+
+
+2016-05-20 17:57:35,895 - Polatis - INFO - -------[[[Get  - pass xml query to switch]]]-------
+
+
+2016-05-20 17:57:35,899 - Polatis - INFO - xml str is : 
+
+<?xml version="1.0" ?>
+<opsw:product-information xmlns:opsw="http://www.polatis.com/yang/optical-switch" xmlns:plts="http://www.polatis.com/yang/polatis-switch">
+ <opsw:serial-number/>
+ <opsw:manufacturer/>
+ <opsw:model-name/>
+ <opsw:software-version/>
+</opsw:product-information>
+
+
+
+2016-05-20 17:57:37,027 - Polatis - INFO - -------[[[Get - Output from the switch]]]-------
+
+<?xml version="1.0" ?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <product-information xmlns="http://www.polatis.com/yang/optical-switch">
+  <manufacturer>Polatis</manufacturer>
+  <serial-number>1533</serial-number>
+  <model-name>N-OST-48x48-HA1-DMHEV-050</model-name>
+  <software-version>6.5.0.20</software-version>
+ </product-information>
+</data>
+
+
+2016-05-20 17:57:48,658 - Polatis - INFO - Connecting to  switch <IP:Port = 10.99.99.225:830>
+
+2016-05-20 17:57:53,491 - Polatis - INFO - 
+
+       +--------------------------------+       
+       | 1 -  get - selectedProductInfo |
+       +--------------------------------+       
+
+
+2016-05-20 17:57:53,495 - Polatis - INFO - <product information> sub tags name are  : ['ports', 'serial-number', 'manufacturer', 'model-name', 'software-version']
+
+
+2016-05-20 17:57:53,496 - Polatis - INFO - <ports> port-ids : 1
+
+
+2016-05-20 17:57:53,496 - Polatis - INFO - <ports> sub tags : port-type,has_opm,has_oxc
+
+
+2016-05-20 18:00:10,969 - Polatis - INFO - Connecting to  switch <IP:Port = 10.99.99.225:830>
+
+2016-05-20 18:00:15,681 - Polatis - INFO - 
+
+       +--------------------------------+       
+       | 1 -  get - selectedProductInfo |
+       +--------------------------------+       
+
+
+2016-05-20 18:00:15,684 - Polatis - INFO - <product information> sub tags name are  : ['ports', 'serial-number', 'manufacturer', 'model-name', 'software-version']
+
+
+2016-05-20 18:00:15,685 - Polatis - INFO - <ports> port-ids : 1
+
+
+2016-05-20 18:00:15,686 - Polatis - INFO - <ports> sub tags : port-type,has_opm,has_oxc
+
+
+2016-05-20 18:00:32,249 - Polatis - INFO - Connecting to  switch <IP:Port = 10.99.99.225:830>
+
+2016-05-20 18:00:38,841 - Polatis - INFO - 
+
+       +--------------------------------+       
+       | 1 -  get - selectedProductInfo |
+       +--------------------------------+       
+
+
+2016-05-20 18:00:38,844 - Polatis - INFO - <product information> sub tags name are  : ['ports', 'serial-number', 'manufacturer', 'model-name', 'software-version']
+
+
+2016-05-20 18:00:38,846 - Polatis - INFO - <ports> port-ids : 1
+
+
+2016-05-20 18:00:38,847 - Polatis - INFO - <ports> sub tags : port-type,has_opm,has_oxc
+
+
+2016-05-20 18:00:38,849 - Polatis - INFO - Quering for running configuration data from switch using get
+
+
+2016-05-20 18:00:38,850 - Polatis - INFO - -------[[[Get  - pass xml query to switch]]]-------
+
+
+2016-05-20 18:00:38,855 - Polatis - INFO - xml str is : 
+
+<?xml version="1.0" ?>
+<opsw:product-information xmlns:opsw="http://www.polatis.com/yang/optical-switch" xmlns:plts="http://www.polatis.com/yang/polatis-switch">
+ <opsw:serial-number/>
+ <opsw:manufacturer/>
+ <opsw:model-name/>
+ <opsw:software-version/>
+</opsw:product-information>
+
+
+
+2016-05-20 18:00:39,883 - Polatis - INFO - -------[[[Get - Output from the switch]]]-------
+
+<?xml version="1.0" ?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <product-information xmlns="http://www.polatis.com/yang/optical-switch">
+  <manufacturer>Polatis</manufacturer>
+  <serial-number>1533</serial-number>
+  <model-name>N-OST-48x48-HA1-DMHEV-050</model-name>
+  <software-version>6.5.0.20</software-version>
+ </product-information>
+</data>
+
+

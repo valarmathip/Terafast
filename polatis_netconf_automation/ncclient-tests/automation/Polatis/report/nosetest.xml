@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite name="nosetests" tests="10" errors="0" failures="2" skip="0"><testcase classname="test_product_information.test_product_information" name="testGetEgressPortsHasOpmInfo" time="1.097"><failure type="exceptions.AssertionError" message="'PASS' != 'FAIL'&#10;-------------------- &gt;&gt; begin captured logging &lt;&lt; --------------------&#10;polatis: INFO: -----[ create xml for get operation ]-----&#10;&#10;polatis: INFO: -----[ get - response from the switch ]-----&#10;&#10;&lt;?xml version=&quot;1.0&quot; ?&gt;&#10;&lt;data xmlns=&quot;urn:ietf:params:xml:ns:netconf:base:1.0&quot; xmlns:nc=&quot;urn:ietf:params:xml:ns:netconf:base:1.0&quot;&gt;&#10; &lt;product-information xmlns=&quot;http://www.polatis.com/yang/optical-switch&quot;&gt;&#10;  &lt;ports&gt;&#10;   &lt;port-id&gt;49&lt;/port-id&gt;&#10;   &lt;has_opm&gt;false&lt;/has_opm&gt;&#10;  &lt;/ports&gt;&#10;  &lt;ports&gt;&#10;   &lt;port-id&gt;50&lt;/port-id&gt;&#10;   &lt;has_opm&gt;false&lt;/has_opm&gt;&#10;  &lt;/ports&gt;&#10;  &lt;ports&gt;&#10;   &lt;port-id&gt;51&lt;/port-id&gt;&#10;   &lt;has_opm&gt;false&lt;/has_opm&gt;&#10;  &lt;/ports&gt;&#10; &lt;/product-information&gt;&#10;&lt;/data&gt;&#10;&#10;&#10;polatis: INFO: -----[ validate product information ]-----&#10;&#10;&#10;polatis: INFO: existing_product_info : ['49', '50', '51', 'true', 'true', 'true'] &#10;&#10;polatis: INFO: required_product_info : ['49', '50', '51', 'false', 'false', 'false']&#10;&#10;&#10;polatis: ERROR: comparision failed : FAIL&#10;&#10;--------------------- &gt;&gt; end captured logging &lt;&lt; ---------------------"><![CDATA[  File "/usr/lib/python2.7/unittest/case.py", line 329, in run
+    testMethod()
+  File "/usr/local/lib/python2.7/dist-packages/nose/case.py", line 197, in runTest
+    self.test(*self.arg)
+  File "/home/mravi/ncclient-tests/automation/Polatis/test_product_information.py", line 89, in testGetEgressPortsHasOpmInfo
+    self.Product_Information.get_egress_ports_has_opm_info(egress_port_ids = product_info_dict['egress_port_ids'], file_name = 'egress_ports.xml')
+  File "/home/mravi/ncclient-tests/automation/Polatis/lib/netconf/product_information.py", line 505, in get_egress_ports_has_opm_info
+    nose.tools.assert_equals('PASS', result)
+  File "/usr/lib/python2.7/unittest/case.py", line 513, in assertEqual
+    assertion_func(first, second, msg=msg)
+  File "/usr/lib/python2.7/unittest/case.py", line 506, in _baseAssertEqual
+    raise self.failureException(msg)
+'\'PASS\' != \'FAIL\'\n-------------------- >> begin captured logging << --------------------\npolatis: INFO: -----[ create xml for get operation ]-----\n\npolatis: INFO: -----[ get - response from the switch ]-----\n\n<?xml version="1.0" ?>\n<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">\n <product-information xmlns="http://www.polatis.com/yang/optical-switch">\n  <ports>\n   <port-id>49</port-id>\n   <has_opm>false</has_opm>\n  </ports>\n  <ports>\n   <port-id>50</port-id>\n   <has_opm>false</has_opm>\n  </ports>\n  <ports>\n   <port-id>51</port-id>\n   <has_opm>false</has_opm>\n  </ports>\n </product-information>\n</data>\n\n\npolatis: INFO: -----[ validate product information ]-----\n\n\npolatis: INFO: existing_product_info : [\'49\', \'50\', \'51\', \'true\', \'true\', \'true\'] \n\npolatis: INFO: required_product_info : [\'49\', \'50\', \'51\', \'false\', \'false\', \'false\']\n\n\npolatis: ERROR: comparision failed : FAIL\n\n--------------------- >> end captured logging << ---------------------']]></failure><system-out><![CDATA[
+
+       +-----------------------------------------+       
+       |    test_get_egress_ports_has_opm_info   |
+       +-----------------------------------------+       
+
+
+Sending request:  <?xml version="1.0" encoding="UTF-8"?><nc:rpc xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="urn:uuid:aac40262-1cff-11e6-be4f-005056be7599"><nc:get><nc:filter type="subtree"><opsw:product-information xmlns:opsw="http://www.polatis.com/yang/optical-switch" xmlns:plts="http://www.polatis.com/yang/polatis-switch"><opsw:ports><opsw:port-id>49</opsw:port-id><opsw:has_opm/></opsw:ports><opsw:ports><opsw:port-id>50</opsw:port-id><opsw:has_opm/></opsw:ports><opsw:ports><opsw:port-id>51</opsw:port-id><opsw:has_opm/></opsw:ports></opsw:product-information></nc:filter></nc:get></nc:rpc>
+
+
+
+]]></system-out></testcase><testcase classname="test_product_information.test_product_information" name="testGetEgressPortsHasOxcInfo" time="0.689"><system-out><![CDATA[
+
+       +-----------------------------------------+       
+       |    test_get_egress_ports_has_oxc_info   |
+       +-----------------------------------------+       
+
+
+Sending request:  <?xml version="1.0" encoding="UTF-8"?><nc:rpc xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="urn:uuid:ab6f5c48-1cff-11e6-be4f-005056be7599"><nc:get><nc:filter type="subtree"><opsw:product-information xmlns:opsw="http://www.polatis.com/yang/optical-switch" xmlns:plts="http://www.polatis.com/yang/polatis-switch"><opsw:ports><opsw:port-id>49</opsw:port-id><opsw:has_oxc/></opsw:ports><opsw:ports><opsw:port-id>50</opsw:port-id><opsw:has_oxc/></opsw:ports><opsw:ports><opsw:port-id>51</opsw:port-id><opsw:has_oxc/></opsw:ports></opsw:product-information></nc:filter></nc:get></nc:rpc>
+
+
+
+]]></system-out></testcase><testcase classname="test_product_information.test_product_information" name="testGetEgressPortsTypeInfo" time="0.737"><system-out><![CDATA[
+
+       +--------------------------------------+       
+       |    test_get_egress_ports_type_info   |
+       +--------------------------------------+       
+
+
+Sending request:  <?xml version="1.0" encoding="UTF-8"?><nc:rpc xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="urn:uuid:abd873ae-1cff-11e6-be4f-005056be7599"><nc:get><nc:filter type="subtree"><opsw:product-information xmlns:opsw="http://www.polatis.com/yang/optical-switch" xmlns:plts="http://www.polatis.com/yang/polatis-switch"><opsw:ports><opsw:port-id>49</opsw:port-id><opsw:port-type/></opsw:ports><opsw:ports><opsw:port-id>50</opsw:port-id><opsw:port-type/></opsw:ports><opsw:ports><opsw:port-id>51</opsw:port-id><opsw:port-type/></opsw:ports></opsw:product-information></nc:filter></nc:get></nc:rpc>
+
+
+
+]]></system-out></testcase><testcase classname="test_product_information.test_product_information" name="testGetIngressPortsHasOpmInfo" time="0.743"><failure type="exceptions.AssertionError" message="'PASS' != 'FAIL'&#10;-------------------- &gt;&gt; begin captured logging &lt;&lt; --------------------&#10;polatis: INFO: -----[ create xml for get operation ]-----&#10;&#10;polatis: INFO: -----[ get - response from the switch ]-----&#10;&#10;&lt;?xml version=&quot;1.0&quot; ?&gt;&#10;&lt;data xmlns=&quot;urn:ietf:params:xml:ns:netconf:base:1.0&quot; xmlns:nc=&quot;urn:ietf:params:xml:ns:netconf:base:1.0&quot;&gt;&#10; &lt;product-information xmlns=&quot;http://www.polatis.com/yang/optical-switch&quot;&gt;&#10;  &lt;ports&gt;&#10;   &lt;port-id&gt;1&lt;/port-id&gt;&#10;   &lt;has_opm&gt;false&lt;/has_opm&gt;&#10;  &lt;/ports&gt;&#10;  &lt;ports&gt;&#10;   &lt;port-id&gt;2&lt;/port-id&gt;&#10;   &lt;has_opm&gt;false&lt;/has_opm&gt;&#10;  &lt;/ports&gt;&#10;  &lt;ports&gt;&#10;   &lt;port-id&gt;3&lt;/port-id&gt;&#10;   &lt;has_opm&gt;false&lt;/has_opm&gt;&#10;  &lt;/ports&gt;&#10; &lt;/product-information&gt;&#10;&lt;/data&gt;&#10;&#10;&#10;polatis: INFO: -----[ validate product information ]-----&#10;&#10;&#10;polatis: INFO: existing_product_info : ['1', '2', '3', 'true', 'true', 'true'] &#10;&#10;polatis: INFO: required_product_info : ['1', '2', '3', 'false', 'false', 'false']&#10;&#10;&#10;polatis: ERROR: comparision failed : FAIL&#10;&#10;--------------------- &gt;&gt; end captured logging &lt;&lt; ---------------------"><![CDATA[  File "/usr/lib/python2.7/unittest/case.py", line 329, in run
+    testMethod()
+  File "/usr/local/lib/python2.7/dist-packages/nose/case.py", line 197, in runTest
+    self.test(*self.arg)
+  File "/home/mravi/ncclient-tests/automation/Polatis/test_product_information.py", line 67, in testGetIngressPortsHasOpmInfo
+    self.Product_Information.get_ingress_ports_has_opm_info(ingress_port_ids = product_info_dict['ingress_port_ids'], file_name = 'ingress_ports.xml')
+  File "/home/mravi/ncclient-tests/automation/Polatis/lib/netconf/product_information.py", line 388, in get_ingress_ports_has_opm_info
+    nose.tools.assert_equals('PASS', result)
+  File "/usr/lib/python2.7/unittest/case.py", line 513, in assertEqual
+    assertion_func(first, second, msg=msg)
+  File "/usr/lib/python2.7/unittest/case.py", line 506, in _baseAssertEqual
+    raise self.failureException(msg)
+'\'PASS\' != \'FAIL\'\n-------------------- >> begin captured logging << --------------------\npolatis: INFO: -----[ create xml for get operation ]-----\n\npolatis: INFO: -----[ get - response from the switch ]-----\n\n<?xml version="1.0" ?>\n<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">\n <product-information xmlns="http://www.polatis.com/yang/optical-switch">\n  <ports>\n   <port-id>1</port-id>\n   <has_opm>false</has_opm>\n  </ports>\n  <ports>\n   <port-id>2</port-id>\n   <has_opm>false</has_opm>\n  </ports>\n  <ports>\n   <port-id>3</port-id>\n   <has_opm>false</has_opm>\n  </ports>\n </product-information>\n</data>\n\n\npolatis: INFO: -----[ validate product information ]-----\n\n\npolatis: INFO: existing_product_info : [\'1\', \'2\', \'3\', \'true\', \'true\', \'true\'] \n\npolatis: INFO: required_product_info : [\'1\', \'2\', \'3\', \'false\', \'false\', \'false\']\n\n\npolatis: ERROR: comparision failed : FAIL\n\n--------------------- >> end captured logging << ---------------------']]></failure><system-out><![CDATA[
+
+       +------------------------------------------+       
+       |    test_get_ingress_ports_has_opm_info   |
+       +------------------------------------------+       
+
+
+Sending request:  <?xml version="1.0" encoding="UTF-8"?><nc:rpc xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="urn:uuid:ac494bd8-1cff-11e6-be4f-005056be7599"><nc:get><nc:filter type="subtree"><opsw:product-information xmlns:opsw="http://www.polatis.com/yang/optical-switch" xmlns:plts="http://www.polatis.com/yang/polatis-switch"><opsw:ports><opsw:port-id>1</opsw:port-id><opsw:has_opm/></opsw:ports><opsw:ports><opsw:port-id>2</opsw:port-id><opsw:has_opm/></opsw:ports><opsw:ports><opsw:port-id>3</opsw:port-id><opsw:has_opm/></opsw:ports></opsw:product-information></nc:filter></nc:get></nc:rpc>
+
+
+
+]]></system-out></testcase><testcase classname="test_product_information.test_product_information" name="testGetIngressPortsHasOxcInfo" time="0.734"><system-out><![CDATA[
+
+       +------------------------------------------+       
+       |    test_get_ingress_ports_has_oxc_info   |
+       +------------------------------------------+       
+
+
+Sending request:  <?xml version="1.0" encoding="UTF-8"?><nc:rpc xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="urn:uuid:acba8d8e-1cff-11e6-be4f-005056be7599"><nc:get><nc:filter type="subtree"><opsw:product-information xmlns:opsw="http://www.polatis.com/yang/optical-switch" xmlns:plts="http://www.polatis.com/yang/polatis-switch"><opsw:ports><opsw:port-id>1</opsw:port-id><opsw:has_oxc/></opsw:ports><opsw:ports><opsw:port-id>2</opsw:port-id><opsw:has_oxc/></opsw:ports><opsw:ports><opsw:port-id>3</opsw:port-id><opsw:has_oxc/></opsw:ports></opsw:product-information></nc:filter></nc:get></nc:rpc>
+
+
+
+]]></system-out></testcase><testcase classname="test_product_information.test_product_information" name="testGetIngressPortsTypeInfo" time="0.735"><system-out><![CDATA[
+
+       +---------------------------------------+       
+       |    test_get_ingress_ports_type_info   |
+       +---------------------------------------+       
+
+
+Sending request:  <?xml version="1.0" encoding="UTF-8"?><nc:rpc xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="urn:uuid:ad2afbbe-1cff-11e6-be4f-005056be7599"><nc:get><nc:filter type="subtree"><opsw:product-information xmlns:opsw="http://www.polatis.com/yang/optical-switch" xmlns:plts="http://www.polatis.com/yang/polatis-switch"><opsw:ports><opsw:port-id>1</opsw:port-id><opsw:port-type/></opsw:ports><opsw:ports><opsw:port-id>2</opsw:port-id><opsw:port-type/></opsw:ports><opsw:ports><opsw:port-id>3</opsw:port-id><opsw:port-type/></opsw:ports></opsw:product-information></nc:filter></nc:get></nc:rpc>
+
+
+
+]]></system-out></testcase><testcase classname="test_product_information.test_product_information" name="testGetManufacturer" time="0.726"><system-out><![CDATA[
+
+       +----------------------------+       
+       |    test_get_manufacturer   |
+       +----------------------------+       
+
+
+Sending request:  <?xml version="1.0" encoding="UTF-8"?><nc:rpc xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="urn:uuid:ad9b8d0c-1cff-11e6-be4f-005056be7599"><nc:get><nc:filter type="subtree"><opsw:product-information xmlns:opsw="http://www.polatis.com/yang/optical-switch" xmlns:plts="http://www.polatis.com/yang/polatis-switch"><opsw:manufacturer/></opsw:product-information></nc:filter></nc:get></nc:rpc>
+
+
+
+]]></system-out></testcase><testcase classname="test_product_information.test_product_information" name="testGetModelName" time="0.730"><system-out><![CDATA[
+
+       +--------------------------+       
+       |    test_get_model_name   |
+       +--------------------------+       
+
+
+Sending request:  <?xml version="1.0" encoding="UTF-8"?><nc:rpc xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="urn:uuid:ae09f4cc-1cff-11e6-be4f-005056be7599"><nc:get><nc:filter type="subtree"><opsw:product-information xmlns:opsw="http://www.polatis.com/yang/optical-switch" xmlns:plts="http://www.polatis.com/yang/polatis-switch"><opsw:model-name/></opsw:product-information></nc:filter></nc:get></nc:rpc>
+
+
+
+]]></system-out></testcase><testcase classname="test_product_information.test_product_information" name="testGetSerialNumber" time="1.336"><system-out><![CDATA[
+
+       +-----------------------------+       
+       |    test_get_serial_number   |
+       +-----------------------------+       
+
+
+Sending request:  <?xml version="1.0" encoding="UTF-8"?><nc:rpc xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="urn:uuid:ae7a074e-1cff-11e6-be4f-005056be7599"><nc:get><nc:filter type="subtree"><opsw:product-information xmlns:opsw="http://www.polatis.com/yang/optical-switch" xmlns:plts="http://www.polatis.com/yang/polatis-switch"><opsw:serial-number/></opsw:product-information></nc:filter></nc:get></nc:rpc>
+
+
+
+]]></system-out></testcase><testcase classname="test_product_information.test_product_information" name="testGetSoftwareVersion" time="0.737"><system-out><![CDATA[
+
+       +--------------------------------+       
+       |    test_get_software_version   |
+       +--------------------------------+       
+
+
+Sending request:  <?xml version="1.0" encoding="UTF-8"?><nc:rpc xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="urn:uuid:af465998-1cff-11e6-be4f-005056be7599"><nc:get><nc:filter type="subtree"><opsw:product-information xmlns:opsw="http://www.polatis.com/yang/optical-switch" xmlns:plts="http://www.polatis.com/yang/polatis-switch"><opsw:software-version/></opsw:product-information></nc:filter></nc:get></nc:rpc>
+
+
+
+]]></system-out></testcase></testsuite>

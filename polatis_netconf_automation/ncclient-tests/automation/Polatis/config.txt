@@ -1,0 +1,22 @@
+[login_credentials]
+host = 10.99.99.225
+port = 830
+user_name = admin
+password = root
+cli_username = root
+cli_password = P0lat1s
+timeout = 60
+
+[cross_connects]
+ingress_ports_range = 1-48
+egress_ports_range = 49-96
+
+[system_config]
+interface_status = eth0,10.99.99.227,10.99.99.154,255.0.0.0,10.255.255.255,00:50:c2:2b:48:a3
+interface = eth0,10.99.99.227,10.99.99.154,255.0.0.0,10.255.255.255
+
+[product_information]
+manufacturer = Polatis
+serial_number = 1533
+model_name = N-OST-48x48-HA1-DMHEV-050
+software_version = 6.5.0.20

@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <product-information xmlns="http://www.polatis.com/yang/optical-switch">
+  <ports>
+   <port-id>1</port-id>
+   <port-type>INGRESS_PORT</port-type>
+  </ports>
+  <ports>
+   <port-id>2</port-id>
+   <port-type>INGRESS_PORT</port-type>
+  </ports>
+  <ports>
+   <port-id>3</port-id>
+   <port-type>INGRESS_PORT</port-type>
+  </ports>
+ </product-information>
+</data>

@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <system-config xmlns="http://www.polatis.com/yang/optical-switch">
+  <user>
+   <name>optical</name>
+   <password/>
+   <group xmlns="http://www.polatis.com/yang/polatis-switch">admin</group>
+  </user>
+  <user>
+   <name>polatis</name>
+   <password/>
+   <group xmlns="http://www.polatis.com/yang/polatis-switch">view</group>
+  </user>
+  <user>
+   <name>switch</name>
+   <password/>
+   <group xmlns="http://www.polatis.com/yang/polatis-switch">user</group>
+  </user>
+ </system-config>
+</data>
