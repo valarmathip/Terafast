@@ -1,0 +1,24 @@
+Options +FollowSymLinks
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # set ENV:proto variable for current protocol
+  RewriteCond %{HTTPS} =on
+  RewriteRule ^(.*)$ - [env=proto:https]
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^(.*)$ - [env=proto:http]
+
+  RewriteCond %{HTTP_HOST} ^([a-zA-Z0-9_]+)-([a-zA-Z0-9]+)\.highroads\.com  [NC]
+  RewriteRule ^(.*)$ https://192.168.2.88:9031/ext/%1%2logout [L,R=302]
+
+  RewriteCond %{HTTP_HOST} ^([a-zA-Z0-9_]+)\.highroads\.com  [NC]
+  RewriteRule ^(.*)$ https://192.168.2.88:9031/ext/%1hrlogout [L,R=302]
+
+  RewriteRule ^(.*)$ https://192.168.2.88:9031/ext/devint4hrlogout [L,R=302]
+</IfModule>
+
+<Files .htaccess>
+        order allow,deny
+        deny from all
+</Files>
