@@ -1,1 +1,1 @@
-Test to check Jenkins. Goit
+Test to check Jenkins. 
